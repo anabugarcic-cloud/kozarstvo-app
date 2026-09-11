@@ -1,88 +1,96 @@
 import streamlit as st
 from datetime import datetime, timedelta
 
-st.set_page_config(page_title="Kozarstvo Vodič & Kalkulator", page_icon="🐐", layout="wide")
+st.set_page_config(
+    page_title="Kozarstvo Vodič & Kalkulator", 
+    page_icon="🐐", 
+    layout="wide"
+)
 
 st.title("🐐 Vodič, Kalendar i Kalkulator za Kozarstvo")
 
 meni = [
-    "📋 Rase koza", 
-    "🥗 Ishrana", 
-    "🥛 Povećanje mlečnosti", 
-    "📅 Kalendar jarenja", 
+    "📋 Rase koza",
+    "🥗 Ishrana",
+    "🥛 Povećanje mlečnosti",
+    "📅 Kalendar jarenja",
     "🧮 Kalkulator obroka",
     "🧀 Kalkulator sira"
 ]
+
 izbor = st.sidebar.selectbox("Meni / Navigacija", meni)
 
 if izbor == "📋 Rase koza":
     st.header("📋 Pregled rasa koza")
-    st.markdown("""
-    * **Sanska koza:** Najpoznatija mlečna rasa (do 750–1000L mleka po laktaciji). Izuzetno mirne naravi.
-    * **Alpina (Francuska alpina):** Otporna, prilagodljiva, odlična mlečnost i visok kvalitet mleka.
-    * **Balkanska rasa:** Domaća rasa, izuzetno otporna na vremenske uslove, mleko sa visokim procentom masti.
-    * **Burska koza:** Specijalizovana rasa primarno za proizvodnju mesa.
-    """)
-
-elif izbor == "🥗 Ishrana":
-    st.header("🥗 Pravilna ishrana koza")
     col1, col2 = st.columns(2)
     with col1:
-        st.subheader("✅ Preporučeno i dobro")
-        st.write("• Kvalitetno seno (lucerka, livadsko)")
-        st.write("• Sveža paša, brst (žbunje, lišće)")
-        st.write("• Zob (oves), kukuruz, ječam (umereno)")
-        st.write("• So za lizanje i mineralni dodaci")
-        st.write("• Čista voda (5–15L dnevno)")
+        st.subheader("🥛 Mlečne rase")
+        st.markdown("**Sanska koza:** Najpoznatija mlečna rasa (750–1000L mleka po laktaciji). Izuzetno mirna.")
+        st.markdown("**Alpina (Francuska alpina):** Otporna, prilagodljiva, odlična mlečnost i visok kvalitet mleka.")
     with col2:
-        st.subheader("⚠️ Oprez i štetno")
-        st.write("• Otrovne biljke (mrazovac, tisa, bujad, rododendron)")
-        st.write("• Plesniva i buđava hrana")
-        st.write("• Previše kukuruza odjednom (opasnost od acidoze)")
-        st.write("• Sirov i zelen krompir")
+        st.subheader("🥩 Kombinovane i mesne rase")
+        st.markdown("**Balkanska rasa:** Domaća rasa, izuzetno otporna na vremenske uslove, mleko sa visokim % masti.")
+        st.markdown("**Burska koza:** Specijalizovana rasa primarno za proizvodnju mesa.")
+
+elif izbor == "🥗 Ishrana":
+    st.header("🥗 Osnovi ishrane koza")
+    st.info("Pravilna ishrana je ključ zdravlja stada i visoke mlečnosti.")
+    
+    st.error("⚠️ **STRIKTNO UPOZORENJE:** Koze **ne smeju da jedu hleb** (naročito svež ili u većim količinama)! Hleb izaziva opasnu acidozu buraga, nadutost i može biti smrtonosan.")
+    
+    st.markdown("""
+    * **Kabasta hrana:** Kvalitetno seno (lucerka, livadsko) čini 60-70% obroka.
+    * **Koncentrat:** Smese kukuruza, ječma, mekinja i soje za faze laktacije i bremenitosti.
+    * **Voda i minerali:** Sveža voda (5–10L dnevno) i mineralni kamen moraju biti stalno dostupni.
+    """)
 
 elif izbor == "🥛 Povećanje mlečnosti":
-    st.header("🥛 Saveti za veću mlečnost")
-    st.write("1. **Proteini u hrani:** Kvalitetno seno lucerke u laktaciji direktno podiže proizvodnju mleka.")
-    st.write("2. **Stalna voda:** Za 1L mleka kozi je potrebno 3 do 4 litra sveže vode.")
-    st.write("3. **Redovna muža:** Muža u uvek isto vreme smanjuje stres i održava laktaciju.")
-    st.write("4. **Higijena i mir:** Čist objekat bez promaje čuva zdravlje vimena.")
+    st.header("🥛 Saveti za povećanje mlečnosti")
+    st.success("Mali saveti za optimalan prinos mleka:")
+    st.markdown("""
+    1. **Redovna muža:** Muža uvek u isto vreme smanjuje stres kod koza.
+    2. **Balansirani proteini:** Dodavanje sojine ili suncokretove sačme u fazi pune laktacije.
+    3. **Hidratacija:** Topla voda zimi značajno povećava unos vode i proizvodnju mleka.
+    """)
 
 elif izbor == "📅 Kalendar jarenja":
-    st.header("📅 Kalendar bremenitosti i zasušenja")
-    datum_parenja = st.date_input("Izaberite datum parenja koze:", datetime.now())
-    
-    if st.button("Izračunaj datume", type="primary"):
-        datum_jarenja = datum_parenja + timedelta(days=150)
-        datum_zasusenja = datum_parenja + timedelta(days=90)
-        
-        st.success(f"🐐 **Očekivani datum jarenja:** {datum_jarenja.strftime('%d.%m.%Y.')}")
-        st.info(f"🛑 **Preporučeni datum zasušenja (prestanak muže):** {datum_zasusenja.strftime('%d.%m.%Y.')}")
-        st.caption("Gravidnost traje između 147 i 155 dana.")
+    st.header("📅 Kalendar jarenja")
+    datum_pripusta = st.date_input("Izaberite datum pripusta (parenja):", datetime.today())
+    if datum_pripusta:
+        datum_jarenja = datum_pripusta + timedelta(days=150)
+        st.success(f"Očekivani datum jarenja (prosečno 150 dana): **{datum_jarenja.strftime('%d.%m.%Y.')}**")
 
 elif izbor == "🧮 Kalkulator obroka":
     st.header("🧮 Kalkulator dnevnog obroka")
-    tezina = st.number_input("Telesna masa koze (kg):", min_value=20.0, max_value=120.0, value=50.0)
-    mleko = st.number_input("Dnevna proizvodnja mleka (L):", min_value=0.0, max_value=10.0, value=2.5)
     
-    if st.button("Izračunaj obrok", type="primary"):
-        seno_kg = tezina * 0.03
-        koncentrat_g = mleko * 300
-        voda_l = (tezina * 0.1) + (mleko * 3)
+    st.warning("🚫 **Napomena:** U kalkulator obroka nikada ne uračunavajte hleb ili pekarne otpatke!")
+    
+    broj_koza = st.number_input("Broj koza u stadu:", min_value=1, value=5, step=1)
+    status = st.selectbox("Faza laktacije / status:", ["Mlečne koze u laktaciji", "Bremenite koze (zasušene)", "Koze u mirovanju"])
+    
+    if status == "Mlečne koze u laktaciji":
+        seno_po_kozi = 2.5
+        koncentrat_po_kozi = 0.8
+    elif status == "Bremenite koze (zasušene)":
+        seno_po_kozi = 2.0
+        koncentrat_po_kozi = 0.4
+    else:
+        seno_po_kozi = 1.8
+        koncentrat_po_kozi = 0.2
         
-        st.success(f"🌾 **Seno (lucerka/livadsko):** {seno_kg:.2f} kg/dnevno")
-        st.info(f"🥣 **Koncentrat / Žitarice:** {koncentrat_g:.0f} g/dnevno")
-        st.info(f"💧 **Sveža voda:** {voda_l:.1f} L/dnevno")
+    st.write("---")
+    st.metric("Potrebno sena dnevno (kg)", f"{seno_po_kozi * broj_koza:.1f} kg")
+    st.metric("Potrebno koncentrata dnevno (kg)", f"{koncentrat_po_kozi * broj_koza:.1f} kg")
 
 elif izbor == "🧀 Kalkulator sira":
-    st.header("🧀 Kalkulator prinosa sira i sirišta")
-    litari = st.number_input("Količina kozjeg mleka (L):", min_value=1.0, max_value=500.0, value=10.0)
+    st.header("🧀 Kalkulator prinosa sira")
+    litara_mleka = st.number_input("Unesite količinu mleka (Litar):", min_value=1.0, value=10.0, step=0.5)
+    vrsta_sira = st.selectbox("Vrsta sira:", ["Meki / Sveži sir", "Polutvrdi sir"])
     
-    if st.button("Izračunaj prinos sira", type="primary"):
-        mladi = litari * 0.15
-        stari = litari * 0.11
-        siriste = litari * 0.5
+    if vrsta_sira == "Meki / Sveži sir":
+        randman = 0.15  # oko 15%
+    else:
+        randman = 0.10  # oko 10%
         
-        st.success(f"🧀 **Očekivana količina mladog sira:** oko {mladi:.2f} kg")
-        st.info(f"🧀 **Očekivana količina prevrelog/tvrđeg sira:** oko {stari:.2f} kg")
-        st.info(f"💧 **Orijentaciona količina tečnog sirišta:** oko {siriste:.1f} ml")
+    procenjen_sir = litara_mleka * randman
+    st.success(f"Očekivani prinos sira: **{procenjen_sir:.2f} kg**")
