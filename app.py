@@ -168,8 +168,22 @@ elif izbor == "🧀 Pravljenje sira & Saveti":
         st.write("• **Suvo soljenje:** Posipanje morske soli po površini sira tokom preklapanja/okretanja.")
         st.write("• **Soljenje u salamuri:** Potapanje sira u 18-20% rastvor soli na nekoliko sati (u zavisnosti od veličine sira).")
 
-        # --- NOVA PRAKTIČNA SEKCIJA ZA OKRETANJE I SOLJENJE ---
+        # --- NOVA PRAKTIČNA SEKCIJA ZA HLAĐENJE, OKRETANJE I SOLJENJE ---
         st.write("---")
+        with st.expander("❄️ **Saveti za brzo hlađenje mleka (za sve duduke ove planete)**"):
+            st.markdown("""
+            **Zašto je brzo hlađenje presudno?**  
+            Sveže pomuženo mleko ima temperaturu oko **37°C** — što je savršeno okruženje za razvoj bakterija. Ako se ne ohladi brzo na ispod **10°C** (idealno na **4°C**), mleko gubi svežinu, dobija jak/neugodan miris i sir može postati gorak ili kiseo.
+
+            **Tri brze metode bez skupe opreme:**
+            1. **"Vodeno kupatilo" sa ledom (Vodeno kupatilo):**  
+               Lonce sa vrelim ili svežim mlekom stavite u veću posudu/sudoperu napunjenu hladnom vodom i kockama leda. Povremeno blago promešajte mleko (čistom kašikom!) da se toplota ravnomerno prenese na vodu.
+            2. **Zamrznute flaše sa vodom:**  
+               U zamrzivaču uvek imajte spremne plastične flaše (0.5L ili 1.5L) napunjene čistom vodom i dobro zatvorene. Spolja ih dezinfikujte/operite i ubacite direktno u posudu sa mlekom. Mleko će se ohladiti za rekordno vreme!
+            3. **Razdvajanje u manje posude:**  
+               Nikada ne ostavljajte veliku količinu mleka u jednom dubokom loncu jer se u sredini hladi satima. Podelite ga u više plićih posuda ili manjih kanti pre stavljanja na hlađenje.
+            """)
+
         with st.expander("❓ **Praktično objašnjenje: Kako se tačno radi okretanje i suvo soljenje?**"):
             st.markdown("""
             * **Zašto i kako okretati sir u kalupu?**  
