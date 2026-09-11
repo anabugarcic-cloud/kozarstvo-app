@@ -9,6 +9,12 @@ st.set_page_config(
 
 st.title("🐐 Vodič, Kalendar i Kalkulator za Kozarstvo")
 
+# --- SLIKA NA VRHU ---
+try:
+    st.image("koza.jpg", caption="Naša akrobatkinja na imanju 🐐✨", use_container_width=True)
+except Exception:
+    st.info("💡 Proverite da li je fajl 'koza.jpg' otpremljen na GitHub.")
+
 meni = [
     "📋 Rase koza",
     "🥗 Ishrana",
