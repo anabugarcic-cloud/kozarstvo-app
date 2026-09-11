@@ -168,6 +168,21 @@ elif izbor == "🧀 Pravljenje sira & Saveti":
         st.write("• **Suvo soljenje:** Posipanje morske soli po površini sira tokom preklapanja/okretanja.")
         st.write("• **Soljenje u salamuri:** Potapanje sira u 18-20% rastvor soli na nekoliko sati (u zavisnosti od veličine sira).")
 
+        # --- NOVA PRAKTIČNA SEKCIJA ZA OKRETANJE I SOLJENJE ---
+        st.write("---")
+        with st.expander("❓ **Praktično objašnjenje: Kako se tačno radi okretanje i suvo soljenje?**"):
+            st.markdown("""
+            * **Zašto i kako okretati sir u kalupu?**  
+              Dok se sir cedi, gravitacija vuče surutku nadole. Ako se sir ne okreće, dno ostaje previše vlažno, a vrh suv.
+              * **Postupak:** Nakon 15–30 minuta od sipanja u kalup, sir se pažljivo izvađi dlanom, **okrene naopačke** i vrati u kalup.
+              * **Učestalost:** U prvih nekoliko sati okrene se 3–4 puta (na svakih 30–60 min) kako bi sir dobio lep pravilan oblik i ravnomerno iscedio surutku.
+
+            * **Kako se radi suvo soljenje tokom okretanja?**  
+              * Kada izvadite sir iz kalupa da ga okrenete, pospite prstohvat fine soli po gornjoj površini i nežno utrljajte dlanom.
+              * Vratite sir u kalup tako da ta posoljena strana ide na dno.
+              * Zatim pospite i utrljajte malo soli i na novu gornju stranu.
+            """)
+
     with tab3:
         st.subheader("💡 Najčešće greške i kako ih izbeći")
         
