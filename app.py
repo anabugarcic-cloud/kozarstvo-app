@@ -168,27 +168,34 @@ elif izbor == "🧀 Pravljenje sira & Saveti":
         st.write("• **Suvo soljenje:** Posipanje morske soli po površini sira tokom preklapanja/okretanja.")
         st.write("• **Soljenje u salamuri:** Potapanje sira u 18-20% rastvor soli na nekoliko sati (u zavisnosti od veličine sira).")
 
-        # --- NOVA PRAKTIČNA SEKCIJA ZA HLAĐENJE, OKRETANJE I SOLJENJE ---
+        # --- PRAKTIČNI SAVETI ZA HLAĐENJE, MJEŠANJE, OKRETANJE I SOLJENJE ---
         st.write("---")
-        with st.expander("❄️ **Saveti za brzo hlađenje mleka (za sve duduke ove planete)**"):
+        with st.expander("❄️ **Praktični saveti za brzo hlađenje i čuvanje mleka**"):
             st.markdown("""
             **Zašto je brzo hlađenje presudno?**  
-            Sveže pomuženo mleko ima temperaturu oko **37°C** — što je savršeno okruženje za razvoj bakterija. Ako se ne ohladi brzo na ispod **10°C** (idealno na **4°C**), mleko gubi svežinu, dobija jak/neugodan miris i sir može postati gorak ili kiseo.
+            Sveže pomuženo mleko ima temperaturu oko **37°C** — što je savršeno okruženje za brz razvoj bakterija. Ako se ne ohladi brzo na ispod **10°C** (idealno na **4°C**), mleko gubi svežinu, dobija jak/neugodan miris i sir može postati gorak ili kiseo.
 
-            **Tri brze metode bez skupe opreme:**
-            1. **"Vodeno kupatilo" sa ledom (Vodeno kupatilo):**  
-               Lonce sa vrelim ili svežim mlekom stavite u veću posudu/sudoperu napunjenu hladnom vodom i kockama leda. Povremeno blago promešajte mleko (čistom kašikom!) da se toplota ravnomerno prenese na vodu.
+            **Tri efikasne metode u domaćim uslovima:**
+            1. **"Vodeno kupatilo" sa ledom:**  
+               Posudu sa mlekom stavite u veću posudu ili sudoperu napunjenu hladnom vodom i ledom. Povremeno blago promešajte mleko sterilizovanom kašikom radi bržeg prenosa toplote.
             2. **Zamrznute flaše sa vodom:**  
-               U zamrzivaču uvek imajte spremne plastične flaše (0.5L ili 1.5L) napunjene čistom vodom i dobro zatvorene. Spolja ih dezinfikujte/operite i ubacite direktno u posudu sa mlekom. Mleko će se ohladiti za rekordno vreme!
+               Spremite plastične flaše napunjene čistom vodom u zamrzivač. Kada su zamrznute, dobro ih spolja dezinfikujte/operite i uronite direktno u posudu sa mlekom.
             3. **Razdvajanje u manje posude:**  
-               Nikada ne ostavljajte veliku količinu mleka u jednom dubokom loncu jer se u sredini hladi satima. Podelite ga u više plićih posuda ili manjih kanti pre stavljanja na hlađenje.
+               Izbegavajte hlađenje velike količine mleka u jednoj dubokoj posudi jer se središnji deo hladi znatno sporije. Raspodelite mleko u više plićih posuda.
+
+            ---
+            🛑 **ZLATNO PRAVILO: Nikada ne mešajte mleko različitih temperatura!**  
+            Ako sakupljate mleko od više muža (npr. jutarnja i večernja):
+            * **Nemojte** sipati toplo, sveže pomuženo mleko direktno u već ohlađeno mleko iz frižidera!
+            * Novo mleko prvo morate **potpuno ohladiti u frižideru** na istu temperaturu (oko 4°C), pa tek onda pomestati sa prethodno ohlađenim mlekom.
+            * *Razlog:* Sipanje toplog mleka u hladno podiže ukupnu temperaturu i aktivira bakterije koje kvare ukus sira.
             """)
 
         with st.expander("❓ **Praktično objašnjenje: Kako se tačno radi okretanje i suvo soljenje?**"):
             st.markdown("""
             * **Zašto i kako okretati sir u kalupu?**  
               Dok se sir cedi, gravitacija vuče surutku nadole. Ako se sir ne okreće, dno ostaje previše vlažno, a vrh suv.
-              * **Postupak:** Nakon 15–30 minuta od sipanja u kalup, sir se pažljivo izvađi dlanom, **okrene naopačke** i vrati u kalup.
+              * **Postupak:** Nakon 15–30 minuta od sipanja u kalup, sir se pažljivo izvadi dlanom, **okrene naopačke** i vrati u kalup.
               * **Učestalost:** U prvih nekoliko sati okrene se 3–4 puta (na svakih 30–60 min) kako bi sir dobio lep pravilan oblik i ravnomerno iscedio surutku.
 
             * **Kako se radi suvo soljenje tokom okretanja?**  
