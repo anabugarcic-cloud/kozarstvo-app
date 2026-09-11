@@ -152,6 +152,15 @@ elif izbor == "🧀 Pravljenje sira & Saveti":
         st.write("• Sveže pomuženo mleko je najbolje odmah procediti kroz višekratnu sterilnu gazu.")
         st.write("• **Pasterizacija:** Zahrejte mleko na **63°C–65°C** i držite na toj temperaturi 30 minuta (ili na **72°C** na 15 sekundi), a zatim ga brzo ohladite na temperaturu sirištenja (32°C–35°C).")
         
+        # --- ISTAKNUTO UPOZORENJE ZA MEŠANJE MLEKA ---
+        st.warning("""
+        🛑 **ZLATNO PRAVILO: Nikada ne mešajte mleko različitih temperatura!**  
+        Ako sakupljate mleko od više muža (npr. jutarnja i večernja):
+        * **Nemojte** sipati toplo, sveže pomuženo mleko direktno u već ohlađeno mleko iz frižidera!
+        * Novo mleko prvo morate **potpuno ohladiti u frižideru** na istu temperaturu (oko 4°C), pa tek onda pomešati sa prethodno ohlađenim mlekom pre zagrevanja za sirištenje.
+        * *Razlog:* Sipanje toplog mleka u hladno podiže ukupnu temperaturu i naglo aktivira bakterije koje kvare ukus i strukturu sira.
+        """)
+        
         st.markdown("### 2. Sirištenje (Ukotvljavanje)")
         st.write("• Na temperaturi mleka od **33°C–35°C** dodaje se sirilo (maja) razblaženo u malo mlake nehlorisane vode sa prstohvatom soli.")
         st.write("• Poklopite posudu i ostavite **40–60 minuta** na toplom mestu dok se ne formira čvrst gruš (koagulum).")
@@ -168,9 +177,9 @@ elif izbor == "🧀 Pravljenje sira & Saveti":
         st.write("• **Suvo soljenje:** Posipanje morske soli po površini sira tokom preklapanja/okretanja.")
         st.write("• **Soljenje u salamuri:** Potapanje sira u 18-20% rastvor soli na nekoliko sati (u zavisnosti od veličine sira).")
 
-        # --- PRAKTIČNI SAVETI ZA HLAĐENJE, MJEŠANJE, OKRETANJE I SOLJENJE ---
+        # --- PRAKTIČNI SAVETI ZA HLAĐENJE, OKRETANJE I SOLJENJE ---
         st.write("---")
-        with st.expander("❄️ **Praktični saveti za brzo hlađenje i čuvanje mleka**"):
+        with st.expander("❄️ **Praktični saveti za brzo hlađenje mleka**"):
             st.markdown("""
             **Zašto je brzo hlađenje presudno?**  
             Sveže pomuženo mleko ima temperaturu oko **37°C** — što je savršeno okruženje za brz razvoj bakterija. Ako se ne ohladi brzo na ispod **10°C** (idealno na **4°C**), mleko gubi svežinu, dobija jak/neugodan miris i sir može postati gorak ili kiseo.
@@ -182,13 +191,6 @@ elif izbor == "🧀 Pravljenje sira & Saveti":
                Spremite plastične flaše napunjene čistom vodom u zamrzivač. Kada su zamrznute, dobro ih spolja dezinfikujte/operite i uronite direktno u posudu sa mlekom.
             3. **Razdvajanje u manje posude:**  
                Izbegavajte hlađenje velike količine mleka u jednoj dubokoj posudi jer se središnji deo hladi znatno sporije. Raspodelite mleko u više plićih posuda.
-
-            ---
-            🛑 **ZLATNO PRAVILO: Nikada ne mešajte mleko različitih temperatura!**  
-            Ako sakupljate mleko od više muža (npr. jutarnja i večernja):
-            * **Nemojte** sipati toplo, sveže pomuženo mleko direktno u već ohlađeno mleko iz frižidera!
-            * Novo mleko prvo morate **potpuno ohladiti u frižideru** na istu temperaturu (oko 4°C), pa tek onda pomestati sa prethodno ohlađenim mlekom.
-            * *Razlog:* Sipanje toplog mleka u hladno podiže ukupnu temperaturu i aktivira bakterije koje kvare ukus sira.
             """)
 
         with st.expander("❓ **Praktično objašnjenje: Kako se tačno radi okretanje i suvo soljenje?**"):
