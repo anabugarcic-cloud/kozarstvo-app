@@ -9,9 +9,11 @@ st.set_page_config(
 
 st.title("🐐 Vodič, Kalendar i Kalkulator za Kozarstvo")
 
-# --- SLIKA NA VRHU ---
+# --- SLIKA NA VRHU (Centrirana i prilagođene veličine) ---
 try:
-    st.image("koza.jpg", caption="Naša akrobatkinja na imanju 🐐✨", use_container_width=True)
+    col_left, col_img, col_right = st.columns([1, 2, 1])
+    with col_img:
+        st.image("koza.jpg", caption="Naša akrobatkinja na imanju 🐐✨", width=350)
 except Exception:
     st.info("💡 Proverite da li je fajl 'koza.jpg' otpremljen na GitHub.")
 
