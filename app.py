@@ -22,6 +22,7 @@ meni = [
     "🥗 Ishrana",
     "🥛 Povećanje mlečnosti",
     "📅 Kalendar jarenja",
+    "💉 Vakcinacija & Zdravlje",
     "🧮 Kalkulator obroka",
     "🧀 Pravljenje sira & Saveti"
 ]
@@ -67,6 +68,36 @@ elif izbor == "📅 Kalendar jarenja":
     if datum_pripusta:
         datum_jarenja = datum_pripusta + timedelta(days=150)
         st.success(f"Očekivani datum jarenja (prosečno 150 dana): **{datum_jarenja.strftime('%d.%m.%Y.')}**")
+
+elif izbor == "💉 Vakcinacija & Zdravlje":
+    st.header("💉 Zdravstvena zaštita, Vakcinacija i Čišćenje od parazita")
+    
+    tab_vax1, tab_vax2, tab_vax3 = st.tabs(["🛡️ Program vakcinacije", "🪱 Čišćenje od parazita", "🩸 Obavezne zakonske mere"])
+    
+    with tab_vax1:
+        st.subheader("Preventivna vakcinacija")
+        st.markdown("""
+        * **Klostridioze (Enterotoksemija / "Bolest prežderavanja"):**
+          * *Kada:* Ključna vakcinacija! Daje se bremenitim kozama **4–6 nedelja pre jarenja** kako bi prenela imunitet na jarad putem kolostruma.
+          * *Jarad:* Prva vakcinacija sa 4–6 nedelja starosti, a revakcinacija nakon 3–4 nedelja.
+        * **Pastereloza i zarazna šepavost:**
+          * Po preporuci lokalnog veterinara u područjima gde se ove bolesti češće javljaju (najčešće u proleće ili jesen).
+        """)
+        st.warning("📌 **Napomena:** O svim vakcinacijama i tačnom izboru vakcine uvek se posavetujte sa svojim nadležnim veterinarom.")
+
+    with tab_vax2:
+        st.subheader("Dehelmintizacija (Čišćenje od unutrašnjih i spoljašnjih parazita)")
+        st.markdown("""
+        1. **Prolećno čišćenje:** Obavezno **pre izlaska na pašu** (april/maj) kako bi se sprečila infekcija pašnjaka.
+        2. **Jesenje čišćenje:** Nakon završetka sezone paše (oktobar/novembar) – ključno za uklanjanje metilja i želudačno-crevnih parazita pre zime.
+        3. **Nakon jarenja:** Preporučuje se tretman 2-3 nedelje nakon jarenja jer imunološki pad u tom periodu povećava broj parazita.
+        """)
+        st.info("💡 **Savet:** Menjajte grupe lekova (antihelmintika) svake sezone da paraziti ne bi razvili otpornost (rezistentnost). Obavezno vodite računa o **karenci za mleko i meso**!")
+
+    with tab_vax3:
+        st.subheader("Obavezne godišnje veterinarske mere (Usklađeno sa upravom za veterinu)")
+        st.write("• **Bruceloza i Antraks:** Obavezno godišnje vađenje krvi i dijagnostičko ispitivanje stada po programu mera države.")
+        st.write("• **Obeležavanje (Ušne markice):** Sva jarad se moraju obeležiti pre napuštanja imanja ili pre navršenih 6 meseci starosti.")
 
 elif izbor == "🧮 Kalkulator obroka":
     st.header("🧮 Kalkulator dnevnog obroka")
