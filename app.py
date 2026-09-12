@@ -1,225 +1,140 @@
 import streamlit as st
-from datetime import datetime, timedelta
 
+# Podešavanje stranice
 st.set_page_config(
-    page_title="Kozarstvo Vodič & Kalkulator", 
-    page_icon="🐐", 
+    page_title="Kozarstvo - Vodič i Kalkulator",
+    page_icon="🐐",
     layout="wide"
 )
 
-st.title("🐐 Vodič, Kalendar i Kalkulator za Kozarstvo")
+st.title("🐐 Kozarstvo: Vodič za uzgoj, proizvodnju i kalkulator")
 
-# --- SLIKA NA VRHU (Centrirana i prilagođene veličine) ---
-try:
-    col_left, col_img, col_right = st.columns([1, 2, 1])
-    with col_img:
-        st.image("koza.jpg", caption="Naša akrobatkinja na imanju 🐐✨", width=350)
-except Exception:
-    st.info("💡 Proverite da li je fajl 'koza.jpg' otpremljen na GitHub.")
+# Sekcija sa slikama na naslovnoj strani (3 kolone)
+col1, col2, col3 = st.columns(3)
 
-meni = [
-    "📋 Rase koza",
-    "🥗 Ishrana",
-    "🥛 Povećanje mlečnosti",
-    "📅 Kalendar jarenja",
-    "💉 Vakcinacija & Zdravlje",
-    "🧮 Kalkulator obroka",
-    "🧀 Pravljenje sira & Saveti"
-]
+with col1:
+    st.image("koza.jpg", caption="Naša koza", use_container_width=True)
 
-izbor = st.sidebar.selectbox("Meni / Navigacija", meni)
+with col2:
+    st.image("milka1.jpg", caption="Koza Milka", use_container_width=True)
 
-if izbor == "📋 Rase koza":
-    st.header("📋 Pregled rasa koza")
-    col1, col2 = st.columns(2)
-    with col1:
-        st.subheader("🥛 Mlečne rase")
-        st.markdown("**Sanska koza:** Najpoznatija mlečna rasa (750–1000L mleka po laktaciji). Izuzetno mirna.")
-        st.markdown("**Alpina (Francuska alpina):** Otporna, prilagodljiva, odlična mlečnost i visok kvalitet mleka.")
-    with col2:
-        st.subheader("🥩 Kombinovane i mesne rase")
-        st.markdown("**Balkanska rasa:** Domaća rasa, izuzetno otporna na vremenske uslove, mleko sa visokim % masti.")
-        st.markdown("**Burska koza:** Specijalizovana rasa primarno za proizvodnju mesa.")
+with col3:
+    st.image(
+        "https://images.unsplash.com/photo-1452195100486-9cc805987862?auto=format&fit=crop&w=800&q=80", 
+        caption="Domaći kozji sir", 
+        use_container_width=True
+    )
 
-elif izbor == "🥗 Ishrana":
-    st.header("🥗 Osnovi ishrane koza")
-    st.info("Pravilna ishrana je ključ zdravlja stada i visoke mlečnosti.")
-    
-    st.error("⚠️ **STRIKTNO UPOZORENJE:** Koze **ne smeju da jedu hleb** (naročito svež ili u većim količinama)! Hleb izaziva opasnu acidozu buraga, nadutost i može biti smrtonosan.")
-    
-    st.markdown("""
-    * **Kabasta hrana:** Kvalitetno seno (lucerka, livadsko) čini 60-70% obroka.
-    * **Koncentrat:** Smese kukuruza, ječma, mekinja i soje za faze laktacije i bremenitosti.
-    * **Voda i minerali:** Sveža voda (5–10L dnevno) i mineralni kamen moraju biti stalno dostupni.
+st.markdown("---")
+
+# Tabovi za navigaciju kroz aplikaciju
+tab1, tab2, tab3, tab4, tab5 = st.tabs([
+    "1. Rase i Osnove", 
+    "2. Ishrana i Nega", 
+    "3. Kalkulator Mleka i Sira", 
+    "4. Prerada i Recepti", 
+    "5. Sirenje i Čuvanje Sira"
+])
+
+with tab1:
+    st.header("1. Rase koza i osnove uzgoja")
+    st.write("""
+    Kozarstvo je izuzetno isplativa i održiva grana stočarstva. Pravilan izbor rase zavisi od vaših ciljeva:
+    - **Alpina (Francuska alpina):** Odlična mlekulja, prilagodljiva terenima, stabilna proizvodnja.
+    - **Sanska koza:** Šampion u količini mleka, idealna za intenzivan uzgoj i štalske uslove.
+    - **Balkanska koza:** Skromnih zahteva, izuzetno otporna, odlična za brdska i planinska područja.
     """)
 
-elif izbor == "🥛 Povećanje mlečnosti":
-    st.header("🥛 Saveti za povećanje mlečnosti")
-    st.success("Mali saveti za optimalan prinos mleka:")
-    st.markdown("""
-    1. **Redovna muža:** Muža uvek u isto vreme smanjuje stres kod koza.
-    2. **Balansirani proteini:** Dodavanje sojine ili suncokretove sačme u fazi pune laktacije.
-    3. **Hidratacija:** Topla voda zimi značajno povećava unos vode i proizvodnju mleka.
+with tab2:
+    st.header("2. Ishrana i dnevna nega")
+    st.write("""
+    Pravilna ishrana direktno utiče na kvalitet mleka i procenat mlečne masti:
+    - **Kabasta hrana:** Kvalitetno seno (lucerka, livadsko seno) čini osnovu obroka.
+    - **Koncentrovana hrana:** Kukuruz, ječam, zob i mekinje za visoku mlečnost.
+    - **Čista voda i mineralni kamen:** Uvek dostupni za pravilno varenje i zdravlje stada.
     """)
 
-elif izbor == "📅 Kalendar jarenja":
-    st.header("📅 Kalendar jarenja")
-    datum_pripusta = st.date_input("Izaberite datum pripusta (parenja):", datetime.today())
-    if datum_pripusta:
-        datum_jarenja = datum_pripusta + timedelta(days=150)
-        st.success(f"Očekivani datum jarenja (prosečno 150 dana): **{datum_jarenja.strftime('%d.%m.%Y.')}**")
-
-elif izbor == "💉 Vakcinacija & Zdravlje":
-    st.header("💉 Zdravstvena zaštita, Vakcinacija i Čišćenje od parazita")
+with tab3:
+    st.header("3. Kalkulator prerade mleka u sir")
+    st.write("Izračunajte očekivanu količinu sira na osnovu ulazne količine mleka:")
     
-    tab_vax1, tab_vax2, tab_vax3 = st.tabs(["🛡️ Program vakcinacije", "🪱 Čišćenje od parazita", "🩸 Obavezne zakonske mere"])
+    mleko_litara = st.number_input("Unesite količinu mleka u litrima (L):", min_value=1.0, value=10.0, step=1.0)
+    tip_sira = st.selectbox("Izaberite tip sira:", ["Meki / Sveži sir (~12-15% prinos)", "Polutvrdi / Tvrdi sir (~10-12% prinos)"])
     
-    with tab_vax1:
-        st.subheader("Preventivna vakcinacija")
-        st.markdown("""
-        * **Klostridioze (Enterotoksemija / "Bolest prežderavanja"):**
-          * *Kada:* Ključna vakcinacija! Daje se bremenitim kozama **4–6 nedelja pre jarenja** kako bi prenela imunitet na jarad putem kolostruma.
-          * *Jarad:* Prva vakcinacija sa 4–6 nedelja starosti, a revakcinacija nakon 3–4 nedelja.
-        * **Pastereloza i zarazna šepavost:**
-          * Po preporuci lokalnog veterinara u područjima gde se ove bolesti češće javljaju (najčešće u proleće ili jesen).
-        """)
-        st.warning("📌 **Napomena:** O svim vakcinacijama i tačnom izboru vakcine uvek se posavetujte sa svojim nadležnim veterinarom.")
-
-    with tab_vax2:
-        st.subheader("Dehelmintizacija (Čišćenje od unutrašnjih i spoljašnjih parazita)")
-        st.markdown("""
-        1. **Prolećno čišćenje:** Obavezno **pre izlaska na pašu** (april/maj) kako bi se sprečila infekcija pašnjaka.
-        2. **Jesenje čišćenje:** Nakon završetka sezone paše (oktobar/novembar) – ključno za uklanjanje metilja i želudačno-crevnih parazita pre zime.
-        3. **Nakon jarenja:** Preporučuje se tretman 2-3 nedelje nakon jarenja jer imunološki pad u tom periodu povećava broj parazita.
-        """)
-        st.info("💡 **Savet:** Menjajte grupe lekova (antihelmintika) svake sezone da paraziti ne bi razvili otpornost (rezistentnost). Obavezno vodite računa o **karenci za mleko i meso**!")
-
-    with tab_vax3:
-        st.subheader("Obavezne godišnje veterinarske mere (Usklađeno sa upravom za veterinu)")
-        st.write("• **Bruceloza i Antraks:** Obavezno godišnje vađenje krvi i dijagnostičko ispitivanje stada po programu mera države.")
-        st.write("• **Obeležavanje (Ušne markice):** Sva jarad se moraju obeležiti pre napuštanja imanja ili pre navršenih 6 meseci starosti.")
-
-elif izbor == "🧮 Kalkulator obroka":
-    st.header("🧮 Kalkulator dnevnog obroka")
-    
-    st.warning("🚫 **Napomena:** U kalkulator obroka nikada ne uračunavajte hleb ili pekarne otpatke!")
-    
-    broj_koza = st.number_input("Broj koza u stadu:", min_value=1, value=5, step=1)
-    status = st.selectbox("Faza laktacije / status:", ["Mlečne koze u laktaciji", "Bremenite koze (zasušene)", "Koze u mirovanju"])
-    
-    if status == "Mlečne koze u laktaciji":
-        seno_po_kozi = 2.5
-        koncentrat_po_kozi = 0.8
-    elif status == "Bremenite koze (zasušene)":
-        seno_po_kozi = 2.0
-        koncentrat_po_kozi = 0.4
+    if "Meki" in tip_sira:
+        prinos = mleko_litara * 0.14
     else:
-        seno_po_kozi = 1.8
-        koncentrat_po_kozi = 0.2
+        prinos = mleko_litara * 0.11
         
-    st.write("---")
-    st.metric("Potrebno sena dnevno (kg)", f"{seno_po_kozi * broj_koza:.1f} kg")
-    st.metric("Potrebno koncentrata dnevno (kg)", f"{koncentrat_po_kozi * broj_koza:.1f} kg")
+    st.success(f"Očekivana količina sira: **{prinos:.2f} kg**")
 
-elif izbor == "🧀 Pravljenje sira & Saveti":
-    st.header("🧀 Vodič za pravljenje sira & Kalkulator prinosa")
+with tab4:
+    st.header("4. Prerada mleka i tradicionalne recepture za sir")
+    st.write("Tri proverene i vrhunske recepture za dodatu vrednost vaših proizvoda:")
     
-    tab1, tab2, tab3 = st.tabs(["🧮 Kalkulator sira", "📖 Korak-po-korak vodič", "💡 Zlatna pravila i greške"])
+    col_r1, col_r2, col_r3 = st.columns(3)
     
-    with tab1:
-        st.subheader("Proračun količine sira iz mleka")
-        litara_mleka = st.number_input("Unesite količinu mleka (Litara):", min_value=1.0, value=10.0, step=0.5)
-        vrsta_sira = st.selectbox("Vrsta sira koju pravite:", ["Meki / Mladi / Sveži sir (veći randman)", "Polutvrdi / Kriška sir", "Tvrdi odležali sir"])
+    with col_r1:
+        st.subheader("🫒 1. Sir u maslinovom ulju")
+        st.write("""
+        **Sastojci:** Kockice dobro oceđenog i prosušenog čvrstog kozjeg sira, devičansko maslinovo ulje, ruzmarin, majčina dušica, biber u zrnu.
         
-        if vrsta_sira == "Meki / Mladi / Sveži sir (veći randman)":
-            randman = 0.15  # 15%
-            opis = "Za 1 kg mladog sira potrebno je oko 6.5–7 litara kozjeg mleka."
-        elif vrsta_sira == "Polutvrdi / Kriška sir":
-            randman = 0.11  # 11%
-            opis = "Za 1 kg polutvrdog sira potrebno je oko 9 litara kozjeg mleka."
-        else:
-            randman = 0.08  # 8%
-            opis = "Za 1 kg tvrdog zrelog sira potrebno je oko 12 litara kozjeg mleka."
-            
-        procenjen_sir = litara_mleka * randman
-        st.success(f"Očekivani prinos sira: **{procenjen_sir:.2f} kg**")
-        st.caption(f"ℹ️ {opis}")
-
-    with tab2:
-        st.subheader("Osnove tehnologije izrade kozjeg sira")
-        
-        st.markdown("### 1. Priprema i Pasterizacija")
-        st.write("• Sveže pomuženo mleko je najbolje odmah procediti kroz višekratnu sterilnu gazu.")
-        st.write("• **Pasterizacija:** Zahrejte mleko na **63°C–65°C** i držite na toj temperaturi 30 minuta (ili na **72°C** na 15 sekundi), a zatim ga brzo ohladite na temperaturu sirištenja (32°C–35°C).")
-        
-        # --- ISTAKNUTO UPOZORENJE ZA MEŠANJE MLEKA ---
-        st.warning("""
-        🛑 **ZLATNO PRAVILO: Nikada ne mešajte mleko različitih temperatura!**  
-        Ako sakupljate mleko od više muža (npr. jutarnja i večernja):
-        * **Nemojte** sipati toplo, sveže pomuženo mleko direktno u već ohlađeno mleko iz frižidera!
-        * Novo mleko prvo morate **potpuno ohladiti u frižideru** na istu temperaturu (oko 4°C), pa tek onda pomešati sa prethodno ohlađenim mlekom pre zagrevanja za sirištenje.
-        * *Razlog:* Sipanje toplog mleka u hladno podiže ukupnu temperaturu i naglo aktivira bakterije koje kvare ukus i strukturu sira.
+        **Priprema:**
+        1. Sir prosušiti 24h na rešetki.
+        2. Ređati u sterilisanu teglu sa začinima.
+        3. Potpuno prelijte uljem da nema vazdušnih džepova.
+        4. Odležati minimum 10 dana na hladnom.
         """)
         
-        st.markdown("### 2. Sirištenje (Ukotvljavanje)")
-        st.write("• Na temperaturi mleka od **33°C–35°C** dodaje se sirilo (maja) razblaženo u malo mlake nehlorisane vode sa prstohvatom soli.")
-        st.write("• Poklopite posudu i ostavite **40–60 minuta** na toplom mestu dok se ne formira čvrst gruš (koagulum).")
-
-        st.markdown("### 3. Sečenje i obrada gruša")
-        st.write("• Kada je gruš čvrst (puca ravno pod prstom), isecite ga nožem ili rešetkom na kockice veličine 1–2 cm.")
-        st.write("• Ostavite 5–10 minuta da se surutka počne odvajati, pa lagano mešajte 10-15 minuta da se zrna malo zategnu.")
-
-        st.markdown("### 4. Ceđenje i Kalupljenje")
-        st.write("• Prebacite gruš u kalupe obložene gazom ili u sirarske cediljke.")
-        st.write("• Ostavite da se samoceđivanjem odvaja surutka nekoliko sati, uz povremeno okretanje sira u kalupu.")
-
-        st.markdown("### 5. Soljenje")
-        st.write("• **Suvo soljenje:** Posipanje morske soli po površini sira tokom preklapanja/okretanja.")
-        st.write("• **Soljenje u salamuri:** Potapanje sira u 18-20% rastvor soli na nekoliko sati (u zavisnosti od veličine sira).")
-
-        # --- PRAKTIČNI SAVETI ZA HLAĐENJE, OKRETANJE I SOLJENJE ---
-        st.write("---")
-        with st.expander("❄️ **Praktični saveti za brzo hlađenje mleka**"):
-            st.markdown("""
-            **Zašto je brzo hlađenje presudno?**  
-            Sveže pomuženo mleko ima temperaturu oko **37°C** — što je savršeno okruženje za brz razvoj bakterija. Ako se ne ohladi brzo na ispod **10°C** (idealno na **4°C**), mleko gubi svežinu, dobija jak/neugodan miris i sir može postati gorak ili kiseo.
-
-            **Tri efikasne metode u domaćim uslovima:**
-            1. **"Vodeno kupatilo" sa ledom:**  
-               Posudu sa mlekom stavite u veću posudu ili sudoperu napunjenu hladnom vodom i ledom. Povremeno blago promešajte mleko sterilizovanom kašikom radi bržeg prenosa toplote.
-            2. **Zamrznute flaše sa vodom:**  
-               Spremite plastične flaše napunjene čistom vodom u zamrzivač. Kada su zamrznute, dobro ih spolja dezinfikujte/operite i uronite direktno u posudu sa mlekom.
-            3. **Razdvajanje u manje posude:**  
-               Izbegavajte hlađenje velike količine mleka u jednoj dubokoj posudi jer se središnji deo hladi znatno sporije. Raspodelite mleko u više plićih posuda.
-            """)
-
-        with st.expander("❓ **Praktično objašnjenje: Kako se tačno radi okretanje i suvo soljenje?**"):
-            st.markdown("""
-            * **Zašto i kako okretati sir u kalupu?**  
-              Dok se sir cedi, gravitacija vuče surutku nadole. Ako se sir ne okreće, dno ostaje previše vlažno, a vrh suv.
-              * **Postupak:** Nakon 15–30 minuta od sipanja u kalup, sir se pažljivo izvadi dlanom, **okrene naopačke** i vrati u kalup.
-              * **Učestalost:** U prvih nekoliko sati okrene se 3–4 puta (na svakih 30–60 min) kako bi sir dobio lep pravilan oblik i ravnomerno iscedio surutku.
-
-            * **Kako se radi suvo soljenje tokom okretanja?**  
-              * Kada izvadite sir iz kalupa da ga okrenete, pospite prstohvat fine soli po gornjoj površini i nežno utrljajte dlanom.
-              * Vratite sir u kalup tako da ta posoljena strana ide na dno.
-              * Zatim pospite i utrljajte malo soli i na novu gornju stranu.
-            """)
-
-    with tab3:
-        st.subheader("💡 Najčešće greške i kako ih izbeći")
+    with col_r2:
+        st.subheader("🌿 2. Sir sa bosiljkom i začinskim biljem")
+        st.write("""
+        **Sastojci:** Sveži ili polutvrdi kozji sir, svež ili sušeni bosiljak, beli luk u granulama, maslinovo ulje.
         
-        col_a, col_b = st.columns(2)
-        with col_a:
-            st.error("❌ Sir je gorak")
-            st.write("Najčešći razlog je **previše sirila**, prljava oprema ili neadekvatna temperatura tokom zrenja (previsoka temperatura).")
-            
-            st.error("❌ Sir se mrvi i jako je tvrd")
-            st.write("Razlog je previše kiselo mleko, previše sitno isečen gruš ili presušivanje tokom ceđenja.")
+        **Priprema:**
+        1. Formirane rolice ili kriške sira uvaljati u sitno seckani bosiljak i beli luk.
+        2. Ostaviti u hladnjači/frižideru 12–24h da sir upije aromu bilja.
+        3. Pakovati u vakuum foliju ili preliti laganim uljem za produženu svežinu.
+        """)
         
-        with col_b:
-            st.warning("⚠️ Miris štale u siru")
-            st.write("Potiče od nedovoljne higijene prilikom muže ili od prisustva jarca blizu koza koje se muzu.")
-            
-            st.success("✅ Savet za puniji ukus")
-            st.write("Ostavite sir u čistom i prohladnom prostoru (12–15°C) sa vlažnošću vazduha oko 80–85% ako želite da razvije bogatu aromu i lepu koricu.")
+    with col_r3:
+        st.subheader("🪵 3. Sir u pepelu (ili pikantni sa paprikom)")
+        st.write("""
+        **Sastojci:** Meki/sveži kozji sir, prosejani drveni pepeo (od hrasta/bukve) ili slatka/ljuta tucana paprika.
+        
+        **Priprema:**
+        1. Sir nakon ceđenja blagim posipanjem obložiti tankim slojem čistog drvenog pepela (ili tucane paprike).
+        2. Pepeo smanjuje kiselost na površini i podstiče stvaranje fine, kremaste kore.
+        3. Ostaviti na zrenju na 12°C oko 7 do 14 dana.
+        """)
+
+with tab5:
+    st.header("5. Sirenje i detaljno uputstvo za čuvanje sira")
+    
+    st.subheader("🧀 Proces sirenja")
+    st.write("""
+    Sirenje je ključna faza u kojoj se mleko pod uticajem sirila i kontrole temperature zgrušava i pretvara u gruš:
+    - Održavajte temperaturu mleka stabilnom (obično između 32°C i 35°C u zavisnosti od recepture).
+    - Nakon dodavanja sirila, ostavite mleko u mirovanju dok se ne formira čvrst gruš čistog loma.
+    - Gruš se seče na kockice odgovarajuće veličine kako bi se izdvojila surutka.
+    """)
+    
+    st.subheader("🧊 Čuvanje i zrenje sira nakon podsoljavanja / salamurenja")
+    st.info("""
+    Mnogi proizvođači prave greške upravo nakon soljenja! Pravilno čuvanje određuje teksturu, ukus i trajnost sira.
+    """)
+    
+    st.markdown("""
+    #### 1. Prosušivanje sira (nakon vađenja iz salamure ili suvog soljenja)
+    - **Ocedjivanje:** Sir se mora dobro ocediti od viška tečnosti.
+    - **Formiranje kore:** Ostavite sir na proji/rešetki na temperaturi od **12°C do 15°C** uz blago strujanje vazduha 24–48 sati dok se površina ne osuši i ne formira zaštitna pokožica.
+
+    #### 2. Uslovi zrenja (Podrum / Zrenionica)
+    - **Temperatura:** Optimalna temperatura za zrenje većine kozjih sireva je **10°C – 13°C**.
+    - **Vlažnost vazduha:** Relativna vlažnost mora biti **80% – 85%**. Ako je vazduh presuv, sir puca; ako je previše vlažan, hvata se nepoželjna buđ.
+    - **Okretanje:** Prvih dve nedelje sir se okreće svakodnevno, a kasnije 2-3 puta nedeljno radi ravnomernog sušenja i formiranja strukture.
+
+    #### 3. Skladištenje i dugotrajno čuvanje
+    - **Čuvanje u ulju:** Za produženo trajanje bez gubitka vlage, sir se pakuje u staklene tegle sa maslinovim ili suncokretovim uljem uz dodatak lekovitog bilja.
+    - **Čuvanje u salamuri:** Za meke i polutvrde bele sireve, čuvati u blagoj salamuri (6–8% soli) na temperaturi od **4°C do 8°C** u frižideru ili hladnom podrumu.
+    """)
