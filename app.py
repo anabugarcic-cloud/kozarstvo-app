@@ -16,7 +16,7 @@ with col1:
     st.image("koza.jpg", caption="Naša koza", use_container_width=True)
 
 with col2:
-    st.image("milka1.jpg", caption="Koza Milka", use_container_width=True)
+    st.image("milka 1.jpg", caption="Koza Milka", use_container_width=True)
 
 with col3:
     st.image(
