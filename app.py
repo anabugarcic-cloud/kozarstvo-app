@@ -7,35 +7,42 @@ st.set_page_config(
     layout="wide"
 )
 
-# Custom CSS za upečatljiviju zelenu pozadinu i lepši stil
+# Custom CSS za izraženiju zelenu pozadinu i fiksiranu visinu slika (bez rupa)
 st.markdown("""
     <style>
     .stApp {
-        background-color: #eaf4eb;
+        background-color: #e2f0d9;
     }
     
-    /* Jača zelena pozadina iza sekcije sa slikama */
-    .hero-container {
-        background-color: #cce4ce;
+    /* Zaseban zeleniji blok za galeriju slika */
+    .gallery-container {
+        background-color: #c5e0b4;
         padding: 20px;
         border-radius: 15px;
-        border: 2px solid #81c784;
-        margin-bottom: 25px;
+        border: 2px solid #84a98c;
+        margin-bottom: 20px;
+    }
+
+    /* Ograničavanje visine slika da nema praznog prostora */
+    .stImage img {
+        max-height: 280px;
+        object-fit: cover;
+        border-radius: 8px;
     }
     
     .slogan-box {
         text-align: center;
         padding: 12px;
         margin-top: 15px;
-        background-color: #a5d6a7;
+        background-color: #a3cfbb;
         border-radius: 10px;
-        border: 2px solid #4caf50;
+        border: 2px solid #2d6a4f;
     }
     
     .slogan-text {
         font-size: 26px;
         font-weight: bold;
-        color: #1b5e20;
+        color: #1b4332;
         letter-spacing: 1px;
     }
     </style>
@@ -43,48 +50,48 @@ st.markdown("""
 
 st.title("🐐 Kozarstvo: Vodič za uzgoj, proizvodnju i kalkulator")
 
-# Početak sekcije sa jačom zelenom pozadinom
-st.markdown('<div class="hero-container">', unsafe_allow_html=True)
+# Početak bloka za galeriju
+st.markdown('<div class="gallery-container">', unsafe_allow_html=True)
 
-# Prvi red slika (3 kolone)
-col1, col2, col3 = st.columns(3)
+# Red 1: Dve slike na vrhu
+row1_col1, row1_col2 = st.columns(2)
 
-with col1:
+with row1_col1:
     try:
         st.image("koza.jpg", caption="Naša koza", use_container_width=True)
     except Exception:
         st.info("Slika koza.jpg")
 
-with col2:
+with row1_col2:
     try:
         st.image("milka 1.jpg", caption="Koza Milka", use_container_width=True)
     except Exception:
         st.info("Slika milka 1.jpg")
 
-with col3:
+# Red 2: Dve slike ispod njih (sir + jarići)
+row2_col1, row2_col2 = st.columns(2)
+
+with row2_col1:
     st.image(
         "https://images.unsplash.com/photo-1452195100486-9cc805987862?auto=format&fit=crop&w=800&q=80", 
         caption="Domaći kozji sir", 
         use_container_width=True
     )
 
-# Popunjavanje rupe: Slika jarića u sredini odmah ispod prvog reda
-col_m1, col_m2, col_m3 = st.columns([1, 2, 1])
-
-with col_m2:
+with row2_col2:
     try:
-        st.image("jarici.jpg", caption="Srećna porodica na pašnjaku", use_container_width=True)
+        st.image("jarici.jpg.jpg", caption="Srećna porodica na pašnjaku", use_container_width=True)
     except Exception:
-        st.info("Slika jarici.jpg")
+        st.info("Slika jarici.jpg.jpg")
 
-# Slogan odjednom ispod slike jarića
+# Slogan na dnu galerije
 st.markdown("""
     <div class="slogan-box">
         <span class="slogan-text">🐐 JEDITE SIR SREĆNIH KOZA 🧀</span>
     </div>
 """, unsafe_allow_html=True)
 
-st.markdown('</div>', unsafe_allow_html=True) # Kraj hero sekcije
+st.markdown('</div>', unsafe_allow_html=True) # Kraj galerije
 
 # Tabovi za navigaciju kroz aplikaciju
 tab1, tab2, tab3, tab4, tab5 = st.tabs([
