@@ -7,16 +7,46 @@ st.set_page_config(
     layout="wide"
 )
 
+# Custom CSS za nežno zelenu pozadinu i lepši stil
+st.markdown("""
+    <style>
+    .stApp {
+        background-color: #f2f8f3;
+    }
+    .slogan-box {
+        text-align: center;
+        padding: 15px;
+        margin-top: 15px;
+        margin-bottom: 25px;
+        background-color: #e2f0d9;
+        border-radius: 12px;
+        border: 2px solid #a8d08d;
+    }
+    .slogan-text {
+        font-size: 26px;
+        font-weight: bold;
+        color: #2e5b27;
+        letter-spacing: 1px;
+    }
+    </style>
+""", unsafe_allow_html=True)
+
 st.title("🐐 Kozarstvo: Vodič za uzgoj, proizvodnju i kalkulator")
 
 # Sekcija sa slikama na naslovnoj strani (3 kolone)
 col1, col2, col3 = st.columns(3)
 
 with col1:
-    st.image("koza.jpg", caption="Naša koza", use_container_width=True)
+    try:
+        st.image("koza.jpg", caption="Naša koza", use_container_width=True)
+    except Exception:
+        st.info("Slika koza.jpg")
 
 with col2:
-    st.image("milka 1.jpg", caption="Koza Milka", use_container_width=True)
+    try:
+        st.image("milka 1.jpg", caption="Koza Milka", use_container_width=True)
+    except Exception:
+        st.info("Slika milka 1.jpg")
 
 with col3:
     st.image(
@@ -24,6 +54,23 @@ with col3:
         caption="Domaći kozji sir", 
         use_container_width=True
     )
+
+st.markdown("---")
+
+# Nova sekcija: Koza sa jarićima i slogan
+col_center1, col_center2, col_center3 = st.columns([1, 2, 1])
+
+with col_center2:
+    try:
+        st.image("jarici.jpg", caption="Srećna porodica na pašnjaku", use_container_width=True)
+    except Exception:
+        st.info("Ubaci sliku 'jarici.jpg' na GitHub da se prikaže ovde.")
+
+st.markdown("""
+    <div class="slogan-box">
+        <span class="slogan-text">🐐 JEDITE SIR SREĆNIH KOZA 🧀</span>
+    </div>
+""", unsafe_allow_html=True)
 
 st.markdown("---")
 
