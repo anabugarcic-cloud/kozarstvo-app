@@ -7,25 +7,35 @@ st.set_page_config(
     layout="wide"
 )
 
-# Custom CSS za nežno zelenu pozadinu i lepši stil
+# Custom CSS za upečatljiviju zelenu pozadinu i lepši stil
 st.markdown("""
     <style>
     .stApp {
-        background-color: #f2f8f3;
+        background-color: #eaf4eb;
     }
+    
+    /* Jača zelena pozadina iza sekcije sa slikama */
+    .hero-container {
+        background-color: #cce4ce;
+        padding: 20px;
+        border-radius: 15px;
+        border: 2px solid #81c784;
+        margin-bottom: 25px;
+    }
+    
     .slogan-box {
         text-align: center;
-        padding: 15px;
+        padding: 12px;
         margin-top: 15px;
-        margin-bottom: 25px;
-        background-color: #e2f0d9;
-        border-radius: 12px;
-        border: 2px solid #a8d08d;
+        background-color: #a5d6a7;
+        border-radius: 10px;
+        border: 2px solid #4caf50;
     }
+    
     .slogan-text {
         font-size: 26px;
         font-weight: bold;
-        color: #2e5b27;
+        color: #1b5e20;
         letter-spacing: 1px;
     }
     </style>
@@ -33,7 +43,10 @@ st.markdown("""
 
 st.title("🐐 Kozarstvo: Vodič za uzgoj, proizvodnju i kalkulator")
 
-# Sekcija sa slikama na naslovnoj strani (3 kolone)
+# Početak sekcije sa jačom zelenom pozadinom
+st.markdown('<div class="hero-container">', unsafe_allow_html=True)
+
+# Prvi red slika (3 kolone)
 col1, col2, col3 = st.columns(3)
 
 with col1:
@@ -55,24 +68,23 @@ with col3:
         use_container_width=True
     )
 
-st.markdown("---")
+# Popunjavanje rupe: Slika jarića u sredini odmah ispod prvog reda
+col_m1, col_m2, col_m3 = st.columns([1, 2, 1])
 
-# Nova sekcija: Koza sa jarićima i slogan
-col_center1, col_center2, col_center3 = st.columns([1, 2, 1])
-
-with col_center2:
+with col_m2:
     try:
         st.image("jarici.jpg", caption="Srećna porodica na pašnjaku", use_container_width=True)
     except Exception:
-        st.info("Ubaci sliku 'jarici.jpg' na GitHub da se prikaže ovde.")
+        st.info("Slika jarici.jpg")
 
+# Slogan odjednom ispod slike jarića
 st.markdown("""
     <div class="slogan-box">
         <span class="slogan-text">🐐 JEDITE SIR SREĆNIH KOZA 🧀</span>
     </div>
 """, unsafe_allow_html=True)
 
-st.markdown("---")
+st.markdown('</div>', unsafe_allow_html=True) # Kraj hero sekcije
 
 # Tabovi za navigaciju kroz aplikaciju
 tab1, tab2, tab3, tab4, tab5 = st.tabs([
