@@ -7,7 +7,7 @@ st.set_page_config(
     layout="wide"
 )
 
-# Custom CSS samo za diskretnu zelenu pozadinu i lep izgled slogana
+# Custom CSS za diskretnu zelenu pozadinu i lep izgled
 st.markdown("""
     <style>
     .stApp {
@@ -17,7 +17,7 @@ st.markdown("""
     .slogan-box {
         text-align: center;
         padding: 16px;
-        margin-top: 20px;
+        margin-top: 15px;
         margin-bottom: 25px;
         background-color: #d8ebd9;
         border-radius: 12px;
@@ -35,8 +35,8 @@ st.markdown("""
 
 st.title("🐐 Kozarstvo: Vodič za uzgoj, proizvodnju i kalkulator")
 
-# Red 1: 3 slike jedna pored druge
-col1, col2, col3 = st.columns(3)
+# Galerija slika - 4 jednake kolone u jednom redu
+col1, col2, col3, col4 = st.columns(4)
 
 with col1:
     try:
@@ -51,24 +51,19 @@ with col2:
         st.info("Slika milka 1.jpg")
 
 with col3:
+    try:
+        st.image("jarici.jpg", caption="Jarići na pašnjaku", use_container_width=True)
+    except Exception:
+        st.info("Slika jarici.jpg")
+
+with col4:
     st.image(
         "https://images.unsplash.com/photo-1452195100486-9cc805987862?auto=format&fit=crop&w=800&q=80", 
         caption="Domaći kozji sir", 
         use_container_width=True
     )
 
-st.markdown("---")
-
-# Red 2: Slika sa jarićima u sredini
-col_mid1, col_mid2, col_mid3 = st.columns([1, 2, 1])
-
-with col_mid2:
-    try:
-        st.image("jarici.jpg.jpg", caption="Srećna porodica na pašnjaku", use_container_width=True)
-    except Exception:
-        st.info("Slika jarici.jpg.jpg")
-
-# Slogan ispod slike jarića
+# Slogan ispod galerije
 st.markdown("""
     <div class="slogan-box">
         <span class="slogan-text">🐐 JEDITE SIR SREĆNIH KOZA 🧀</span>
