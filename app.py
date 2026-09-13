@@ -42,7 +42,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ---------------------------------------------------------
-# NASLOV I SLIKE (Tvoja Milka + 2 slike sira sa mreže)
+# NASLOV I SLIKE 
 # ---------------------------------------------------------
 st.title("🐐 Kozarstvo: Vodič za uzgoj, proizvodnju i kalkulator")
 st.write("Dobrodošli na digitalni vodič namenjen malim poljoprivrednim gazdinstvima i početnicima u kozarstvu.")
@@ -69,11 +69,20 @@ st.markdown("---")
 tab1, tab2, tab3 = st.tabs(["📚 1. Osnove uzgoja", "🧀 2. Kalkulator sira", "🌿 3. Delikatesni recepti"])
 
 with tab1:
-    st.header("Rase koza i osnove uzgoja")
+    st.header("Rase koza i detaljan vodič o ishrani")
     st.markdown("""
-    * **Mlečne rase:** Alpina i Sanska koza su najzastupljenije na našem podneblju zbog visoke mlečnosti.
-    * **Ishrana:** Osnovu ishrane čine kvalitetna paša, seno i balansirane koncentrovane smeše.
-    * **Higijena:** Čistoća staje i vimea pre i posle muže je ključna za kvalitet i ukus sira.
+    * **Mlečne rase:** Alpina i Sanska koza su najzastupljenije na našem podneblju zbog visoke mlečnosti i otpornosti.
+    * **Higijena:** Čistoća staje i vimena pre i posle muže je ključna za bezbednost i vrhunski kvalitet sira.
+    """)
+    
+    st.subheader("⚖️ Detaljne dnevne količine u ishrani (po jednoj mliječnoj kozi)")
+    st.markdown("""
+    Pravilno balansiran obrok utiče direktno na količinu i kvalitet mleka:
+    * **Kvalitetno seno (leguminoze/detelina ili livadsko):** **1.5 do 2.5 kg** dnevno. Koza uvek treba da ima dostupno suvo seno.
+    * **Koncentrovana smeša (žitarice - kukuruz, ječam, stočni grašak):** **0.3 do 0.6 kg** dnevno (količina se prilagođava količini mleka koju koza daje, otprilike 300g bazično + 100g za svaki litar mleka).
+    * **Sveža kabasta hrana / Sočna hrana:** U sezoni 2 do 3 kg zelene paše ili bundeve/šargarepe kao dodatak.
+    * **Mineralno-vitaminski dodaci i so:** Kamen lizalac uvek u štali + 15-20g stočne soli i minerala umešanih u hranu.
+    * **Voda:** Kozi je dnevno potrebno **od 5 do 10 litara** čiste, sveže vode (naročito tokom laktacije).
     """)
     
     st.subheader("🩺 Zdravstvena zaštita i vakcinacija")
@@ -87,22 +96,40 @@ with tab1:
     st.info("🧊 **ČUVANJE MLEKA:** Sveže pomuženo mleko mora se što pre ohladiti na temperaturu od 4°C kako bi se sprečio razvoj bakterija i očuvao prirodan, blag ukus. Ne mešati toplo tek pomuženo mleko sa već ohlađenim mlekom!")
 
 with tab2:
-    st.header("Kalkulator prinosa sira")
-    st.write("Izračunajte okvirnu količinu sira koju možete dobiti od dnevne muže.")
+    st.header("Napredni kalkulator prinosa sira")
+    st.write("Izračunajte okvirnu količinu različitih vrsta sira koju možete dobiti od unete količine mleka.")
     
-    mleko_litara = st.number_input("Unesite količinu mleka u litrima (L):", min_value=1.0, value=2.5, step=0.5)
+    mleko_litara = st.number_input("Unesite količinu mleka u litrima (L):", min_value=1.0, value=10.0, step=0.5)
     
-    sir_min = mleko_litara * 0.10
-    sir_max = mleko_litara * 0.12
-    teglice = int(sir_min // 0.120)
+    vrsta_sira = st.selectbox(
+        "Izaberite vrstu sira koju želite da pravite:",
+        [
+            "Mladi meki sir (kremastiji, veći prinos)", 
+            "Polutvrdi / Zreli domaći sir (standardni)", 
+            "Feta / Beli sir u salamuri"
+        ]
+    )
     
-    st.success(f"Od **{mleko_litara} L** mleka očekivani prinos sušenog sira je **{sir_min:.2f} kg do {sir_max:.2f} kg**.")
-    st.info(f"💡 To je dovoljno za otprilike **{teglice} do {teglice+1} delikatesne teglice** sira u ulju!")
+    if "Mladi meki" in vrsta_sira:
+        prinos_min = mleko_litara * 0.15
+        prinos_max = mleko_litara * 0.18
+        opis_sira = "Mladi meki sir zadržava više vlage, pa je i prinos veći (oko 15-18%)."
+    elif "Polutvrdi" in vrsta_sira:
+        prinos_min = mleko_litara * 0.10
+        prinos_max = mleko_litara * 0.12
+        opis_sira = "Polutvrdi i zreli sir se duže cede i suše, pa je prinos oko 10-12%."
+    else:
+        prinos_min = mleko_litara * 0.13
+        prinos_max = mleko_litara * 0.15
+        opis_sira = "Beli sir za salamuru (feta tip) ima specifičan prinos oko 13-15% pre zrenja u slanoj vodi."
+    
+    st.success(f"Od **{mleko_litara} L** mleka za **{vrsta_sira}**, očekivani prinos je **{prinos_min:.2f} kg do {prinos_max:.2f} kg** sira.")
+    st.info(f"💡 {opis_sira}")
 
 with tab3:
     st.header("Receptura: Sir u maslinovom ulju sa biljem")
     st.markdown("""
-    ### Ključni koraci u pripreme (5 koraka):
+    ### Ključni koraci u pripremi (5 koraka):
     1. **Priprema sira:** Koristiti punomasni kozji sir odceđen od surutke.
     2. **Sečenje:** Sir iseći na jednake kockice veličine oko 2x2 cm.
     3. **Prethodno sušenje (Obavezno):** Nakon sečenja na kockice, ostavite ih na rešetki u frižideru **24–48h** da se prosuše. Ovo sprečava izdvajanje surutke u ulju.
@@ -120,5 +147,5 @@ with tab3:
     * **Priprema:** Izmešati začine sa sirom i zaliti uljem.
     """)
 
-# SLOGAN
+# SLOGAN NA DNU
 st.markdown('<div class="slogan-box">🐐 JEDITE SIR SREĆNIH KOZA 🏡</div>', unsafe_allow_html=True)
