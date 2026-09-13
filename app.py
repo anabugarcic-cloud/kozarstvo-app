@@ -1,4 +1,5 @@
 import streamlit as st
+import os
 
 # 1. Postavljanje fiksnih boja za Light/Dark mode
 st.set_page_config(
@@ -41,18 +42,30 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ---------------------------------------------------------
-# NASLOV I GLAVNE SLIKE (Tvoje originalne 3 slike)
+# NASLOV I GLAVNE SLIKE (Sa zaštitom od pucanja ako fajl fali)
 # ---------------------------------------------------------
 st.title("🐐 Kozarstvo: Vodič za uzgoj, proizvodnju i kalkulator")
 st.write("Dobrodošli na digitalni vodič namenjen malim poljoprivrednim gazdinstvima i početnicima u kozarstvu.")
 
 col1, col2, col3 = st.columns(3)
+
 with col1:
-    st.image("milka 1.jpg", caption="Koza Milka")
+    if os.path.exists("milka 1.jpg"):
+        st.image("milka 1.jpg", caption="Koza Milka")
+    else:
+        st.info("🖼️ Slika: Koza Milka")
+
 with col2:
-    st.image("sir 1.jpg", caption="Domaći kozji sir")
+    if os.path.exists("sir 1.jpg"):
+        st.image("sir 1.jpg", caption="Domaći kozji sir")
+    else:
+        st.info("🖼️ Slika: Domaći kozji sir")
+
 with col3:
-    st.image("sir u ulju.jpg", caption="Delikatesni sir sa biljem")
+    if os.path.exists("sir u ulju.jpg"):
+        st.image("sir u ulju.jpg", caption="Delikatesni sir sa biljem")
+    else:
+        st.info("🖼️ Slika: Delikatesni sir sa biljem")
 
 st.markdown("---")
 
@@ -77,7 +90,7 @@ with tab1:
     
     st.warning("⚠️ **VAŽNO UPOZORENJE O ISHRANI:** Izbegavajte davanje svežeg ili plesnivog hleba kozama. Velike količine hleba i skroba mogu izazvati opasnu acidozu ruma i teške digestivne probleme!")
     
-    st.info("🧊 **ČUVANJE MLEKA:** Sveže pomuženo mleko mora se što pre ohladiti na temperaturu od 4°C kako bi se sprečio razvoj bakterija i očuvao prirodan, blag ukus.")
+    st.info("🧊 **ČUVANJE MLEKA:** Sveže pomuženo mleko mora se što pre ohladiti na temperaturu od 4°C kako bi se sprečio razvoj bakterija i očuvao prirodan, blag ukus. Ne mešati toplo tek pomuženo mleko sa već ohlađenim mlekom!")
 
 with tab2:
     st.header("Kalkulator prinosa sira")
