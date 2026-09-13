@@ -42,7 +42,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ---------------------------------------------------------
-# NASLOV I GLAVNE SLIKE (Sa zaštitom od pucanja ako fajl fali)
+# NASLOV I SLIKE (Tvoja Milka + 2 slike sira sa mreže)
 # ---------------------------------------------------------
 st.title("🐐 Kozarstvo: Vodič za uzgoj, proizvodnju i kalkulator")
 st.write("Dobrodošli na digitalni vodič namenjen malim poljoprivrednim gazdinstvima i početnicima u kozarstvu.")
@@ -53,19 +53,13 @@ with col1:
     if os.path.exists("milka 1.jpg"):
         st.image("milka 1.jpg", caption="Koza Milka")
     else:
-        st.info("🖼️ Slika: Koza Milka")
+        st.image("https://images.unsplash.com/photo-1524024973431-2ad916746881?w=500", caption="Koza Milka")
 
 with col2:
-    if os.path.exists("sir 1.jpg"):
-        st.image("sir 1.jpg", caption="Domaći kozji sir")
-    else:
-        st.info("🖼️ Slika: Domaći kozji sir")
+    st.image("https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?w=500", caption="Domaći kozji sir")
 
 with col3:
-    if os.path.exists("sir u ulju.jpg"):
-        st.image("sir u ulju.jpg", caption="Delikatesni sir sa biljem")
-    else:
-        st.info("🖼️ Slika: Delikatesni sir sa biljem")
+    st.image("https://images.unsplash.com/photo-1559561853-08451507cbe7?w=500", caption="Delikatesni sir sa biljem")
 
 st.markdown("---")
 
@@ -98,10 +92,9 @@ with tab2:
     
     mleko_litara = st.number_input("Unesite količinu mleka u litrima (L):", min_value=1.0, value=2.5, step=0.5)
     
-    # Okvirna procena: 10-12% prinosa za polutvrdi/zreli sir
     sir_min = mleko_litara * 0.10
     sir_max = mleko_litara * 0.12
-    teglice = int(sir_min // 0.120)  # Teglice od ~120g sira
+    teglice = int(sir_min // 0.120)
     
     st.success(f"Od **{mleko_litara} L** mleka očekivani prinos sušenog sira je **{sir_min:.2f} kg do {sir_max:.2f} kg**.")
     st.info(f"💡 To je dovoljno za otprilike **{teglice} do {teglice+1} delikatesne teglice** sira u ulju!")
@@ -127,7 +120,5 @@ with tab3:
     * **Priprema:** Izmešati začine sa sirom i zaliti uljem.
     """)
 
-# ---------------------------------------------------------
-# SLOGAN NA DNU
-# ---------------------------------------------------------
+# SLOGAN
 st.markdown('<div class="slogan-box">🐐 JEDITE SIR SREĆNIH KOZA 🏡</div>', unsafe_allow_html=True)
