@@ -7,7 +7,7 @@ st.set_page_config(
     layout="wide"
 )
 
-# Custom CSS za diskretnu zelenu pozadinu i lep izgled
+# Custom CSS za ujednačen vizuelni stil
 st.markdown("""
     <style>
     .stApp {
@@ -35,8 +35,8 @@ st.markdown("""
 
 st.title("🐐 Kozarstvo: Vodič za uzgoj, proizvodnju i kalkulator")
 
-# Galerija slika - 4 jednake kolone u jednom redu
-col1, col2, col3, col4 = st.columns(4)
+# Simetrična galerija: 3 kolone jednake veličine
+col1, col2, col3 = st.columns(3)
 
 with col1:
     try:
@@ -45,25 +45,20 @@ with col1:
         st.info("Slika koza.jpg")
 
 with col2:
-    try:
-        st.image("milka 1.jpg", caption="Koza Milka", use_container_width=True)
-    except Exception:
-        st.info("Slika milka 1.jpg")
-
-with col3:
-    try:
-        st.image("jarici.jpg", caption="Jarići na pašnjaku", use_container_width=True)
-    except Exception:
-        st.info("Slika jarici.jpg")
-
-with col4:
     st.image(
         "https://images.unsplash.com/photo-1452195100486-9cc805987862?auto=format&fit=crop&w=800&q=80", 
         caption="Domaći kozji sir", 
         use_container_width=True
     )
 
-# Slogan ispod galerije
+with col3:
+    st.image(
+        "https://images.unsplash.com/photo-1552767059-ce182ead6c1b?auto=format&fit=crop&w=800&q=80", 
+        caption="Artisanal kozji sir sa začinima", 
+        use_container_width=True
+    )
+
+# Slogan ispod tri izbalansirane slike
 st.markdown("""
     <div class="slogan-box">
         <span class="slogan-text">🐐 JEDITE SIR SREĆNIH KOZA 🧀</span>
@@ -75,7 +70,7 @@ st.markdown("---")
 # Tabovi za navigaciju kroz aplikaciju
 tab1, tab2, tab3, tab4, tab5 = st.tabs([
     "1. Rase i Osnove", 
-    "2. Ishrana i Nega", 
+    "2. Ishrana, Nega i Zdravlje", 
     "3. Kalkulator Mleka i Sira", 
     "4. Prerada i Recepti", 
     "5. Sirenje i Čuvanje Sira"
@@ -91,12 +86,27 @@ with tab1:
     """)
 
 with tab2:
-    st.header("2. Ishrana i dnevna nega")
+    st.header("2. Ishrana, dnevna nega i zdravstvena zaštita")
+    
+    st.subheader("🌾 Ishrana i nega")
     st.write("""
     Pravilna ishrana direktno utiče na kvalitet mleka i procenat mlečne masti:
     - **Kabasta hrana:** Kvalitetno seno (lucerka, livadsko seno) čini osnovu obroka.
     - **Koncentrovana hrana:** Kukuruz, ječam, zob i mekinje za visoku mlečnost.
     - **Čista voda i mineralni kamen:** Uvek dostupni za pravilno varenje i zdravlje stada.
+    """)
+    
+    st.warning("""
+    ⚠️ **VAŽNA NAPOMENA PROTIV ACIDOZE:**  
+    **Nikada ne hranite koze hlebom!** Svež ili bajat hleb u većim količinama izaziva brzu fermentaciju i tešku acidozu buraga (prekomernu kiselost želuca), nadutost i potencijalno smrtonosne komplikacije. Za poslastice koristite isključivo šargarepu, jabuke u umerenim količinama ili suvu zrnastu hranu.
+    """)
+    
+    st.subheader("💉 Vakcinacija i zdravstvena zaštita")
+    st.write("""
+    Redovna preventiva osigurava dugovečnost stada i bezbednost mlečnih proizvoda:
+    - **Dehelmintizacija (čišćenje od parazita):** Obavezno sprovesti 2 puta godišnje (u proleće pre izlaska na pašu i u jesen po završetku paše).
+    - **Vakcinacija protiv klostridioza:** Ključna zaštita od enterotoksemije ("zarazne žutice/sneti"). Vakcinišu se sve kategorije stada jednom godišnje, a bremenite koze 4–6 nedelja pre jagnjenja radi prenosa imuniteta na jarad.
+    - **Nega papaka:** Redovno orezivanje papaka 2–4 puta godišnje sprečava šepavost i trulež papaka.
     """)
 
 with tab3:
@@ -156,18 +166,21 @@ with tab4:
 with tab5:
     st.header("5. Sirenje i detaljno uputstvo za čuvanje sira")
     
-    st.subheader("🧀 Proces sirenja")
+    st.subheader("🧀 Proces sirenja i higijena mleka")
+    
+    st.error("""
+    🥛 **ZLATNO PRAVILO ZA SAKUPLJANJE MLEKA:**  
+    **Nikada ne mešajte mleko različitih temperatura!** Sveže pomuženo (toplo) mleko nikada se ne sipa direktno u prethodno ohlađeno mleko iz frižidera. Mešanje toplog i hladnog mleka izaziva takozvani "toplotni šok", podstiče brzi razvoj nepoželjnih bakterija i aktivira lipase (enzime koji razgrađuju mast), što dovodi do kiseljenja mleka i pojave užeglog, neprijatnog mirisa sira. Sveže mleko prvo ohladite na istu temperaturu pa ga tek onda pomešajte sa ranijim mužama.
+    """)
+    
     st.write("""
-    Sirenje je ključna faza u kojoj se mleko pod uticajem sirila i kontrole temperature zgrušava i pretvara u gruš:
+    **Tehnološke faze sirenja:**
     - Održavajte temperaturu mleka stabilnom (obično između 32°C i 35°C u zavisnosti od recepture).
     - Nakon dodavanja sirila, ostavite mleko u mirovanju dok se ne formira čvrst gruš čistog loma.
     - Gruš se seče na kockice odgovarajuće veličine kako bi se izdvojila surutka.
     """)
     
     st.subheader("🧊 Čuvanje i zrenje sira nakon podsoljavanja / salamurenja")
-    st.info("""
-    Mnogi proizvođači prave greške upravo nakon soljenja! Pravilno čuvanje određuje teksturu, ukus i trajnost sira.
-    """)
     
     st.markdown("""
     #### 1. Prosušivanje sira (nakon vađenja iz salamure ili suvog soljenja)
