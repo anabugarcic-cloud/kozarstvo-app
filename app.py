@@ -1,209 +1,108 @@
 import streamlit as st
 
-# Podešavanje stranice
+# 1. Postavljanje fiksnih boja za Light/Dark mode (Fiksira beli tekst na svetloj pozadini)
 st.set_page_config(
-    page_title="Kozarstvo - Vodič i Kalkulator",
+    page_title="Kozarstvo: Vodič i Kalkulator",
     page_icon="🐐",
     layout="wide"
 )
 
-# Custom CSS za diskretnu zelenu pozadinu i skladan slogan
+# CSS stilovi koji garantuju da je tekst uvek tamno siv/crn na svetloj pozadini
 st.markdown("""
     <style>
+    /* Fiksiranje pozadine cele aplikacije */
     .stApp {
-        background-color: #f4f9f4;
+        background-color: #f9fbf9;
     }
     
+    /* Fiksiranje boje teksta za sve elemente */
+    html, body, [class*="css"], p, h1, h2, h3, h4, h5, h6, li, span, label {
+        color: #1a1a1a !important;
+    }
+
+    /* Stil za kartice i kontejnere */
+    div[data-testid="stVerticalBlock"] > div {
+        border-radius: 8px;
+    }
+    
+    /* ZELENI SLOGAN NA DNU */
     .slogan-box {
+        background-color: #e8f5e9;
+        border: 1px solid #c8e6c9;
+        padding: 15px;
         text-align: center;
-        padding: 16px;
-        margin-top: 15px;
-        margin-bottom: 25px;
-        background-color: #d8ebd9;
-        border-radius: 12px;
-        border: 2px solid #82c486;
-    }
-    
-    .slogan-text {
-        font-size: 26px;
+        border-radius: 10px;
+        margin-top: 30px;
         font-weight: bold;
-        color: #1e4d2b;
-        letter-spacing: 1px;
+        color: #2e7d32 !important;
+        font-size: 20px;
     }
     </style>
 """, unsafe_allow_html=True)
 
+# ---------------------------------------------------------
+# NASLOV I GLAVNA SLIKA
+# ---------------------------------------------------------
 st.title("🐐 Kozarstvo: Vodič za uzgoj, proizvodnju i kalkulator")
+st.write("Dobrodošli na digitalni vodič namenjen malim poljoprivrednim gazdinstvima i početnicima u kozarstvu.")
 
-# Galerija - 3 horizontalne slike jednake razmere
+# Prikaz 3 slike u redu
 col1, col2, col3 = st.columns(3)
-
 with col1:
-    try:
-        st.image("milka 1.jpg", caption="Koza Milka", use_container_width=True)
-    except Exception:
-        st.info("Slika milka 1.jpg")
-
+    st.image("https://images.unsplash.com/photo-1524024973431-2ad916746881?w=500", caption="Raca i paša")
 with col2:
-    st.image(
-        "https://images.unsplash.com/photo-1452195100486-9cc805987862?auto=format&fit=crop&w=800&q=80", 
-        caption="Domaći kozji sir", 
-        use_container_width=True
-    )
-
+    st.image("https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?w=500", caption="Domaći kozji sir")
 with col3:
-    st.image(
-        "https://images.unsplash.com/photo-1559561853-08451507cbe7?auto=format&fit=crop&w=800&q=80", 
-        caption="Zreli kozji sir sa biljem", 
-        use_container_width=True
-    )
-
-# Slogan ispod slika
-st.markdown("""
-    <div class="slogan-box">
-        <span class="slogan-text">🐐 JEDITE SIR SREĆNIH KOZA 🧀</span>
-    </div>
-""", unsafe_allow_html=True)
+    st.image("https://images.unsplash.com/photo-1559561853-08451507cbe7?w=500", caption="Delikatesni sir sa biljem")
 
 st.markdown("---")
 
-# Tabovi za navigaciju kroz aplikaciju
-tab1, tab2, tab3, tab4, tab5 = st.tabs([
-    "1. Rase i Osnove", 
-    "2. Ishrana, Nega i Zdravlje", 
-    "3. Kalkulator Mleka i Sira", 
-    "4. Prerada i Recepti", 
-    "5. Sirenje i Čuvanje Sira"
-])
+# ---------------------------------------------------------
+# TABOVI SA SADRŽAJEM
+# ---------------------------------------------------------
+tab1, tab2, tab3 = st.tabs(["📚 1. Osnove uzgoja", "🧀 2. Kalkulator sira", "🌿 3. Delikatesni recepti"])
 
 with tab1:
-    st.header("1. Rase koza i osnove uzgoja")
-    st.write("""
-    Kozarstvo je izuzetno isplativa i održiva grana stočarstva. Pravilan izbor rase zavisi od vaših ciljeva:
-    - **Alpina (Francuska alpina):** Odlična mlekulja, prilagodljiva terenima, stabilna proizvodnja.
-    - **Sanska koza:** Šampion u količini mleka, idealna za intenzivan uzgoj i štalske uslove.
-    - **Balkanska koza:** Skromnih zahteva, izuzetno otporna, odlična za brdska i planinska područja.
+    st.header("Rase koza i osnove uzgoja")
+    st.markdown("""
+    * **Mlečne rase:** Alpina i Sanska koza su najzastupljenije na našem podneblju zbog visoke mlečnosti.
+    * **Ishrana:** Osnovu ishrane čine kvalitetna paša, seno i balansirane koncentrovane smeše.
+    * **Higijena:** Čistoća staje i vime-a pre i posle muže je ključna za kvalitet i ukus sira.
     """)
 
 with tab2:
-    st.header("2. Ishrana, dnevna nega i zdravstvena zaštita")
+    st.header("Kalkulator prinosa sira")
+    st.write("Izračunajte okvirnu količinu sira koju možete dobiti od dnevne muže.")
     
-    st.subheader("🌾 Pravilna ishrana")
-    st.write("""
-    Pravilna ishrana direktno utiče na kvalitet mleka i procenat mlečne masti:
-    - **Kabasta hrana:** Kvalitetno seno (lucerka, livadsko seno) čini osnovu obroka.
-    - **Koncentrovana hrana:** Kukuruz, ječam, zob i mekinje za visoku mlečnost.
-    - **Čista voda i mineralni kamen:** Uvek dostupni za pravilno varenje i zdravlje stado.
-    """)
+    mleko_litara = st.number_input("Unesite količinu mleka u litrima (L):", min_value=1.0, value=2.5, step=0.5)
     
-    # Upozorenje za hleb
-    st.error("""
-    ⛔ **VAŽNO UPOZORENJE — NIKADA NE HRANITE KOZE HLEBOM!**
+    # Okvirna procena: 10-12% prinosa za polutvrdi/zreli sir
+    sir_min = mleko_litara * 0.10
+    sir_max = mleko_litara * 0.12
+    teglice = int(sir_min // 0.120)  # Teglice od ~120g sira
     
-    Svež ili bajat hleb, kao i peciva u većim količinama, izazivaju **opasnu acidozu buraga** (naglo zakiseljavanje želuca), nadutost i zastoj varenja. Ovo stanje može brzo dovesti do uginuća životinje.
-    - *Bezbedne poslastice:* Sveža šargarepa, komadići jabuke ili mala šaka zrnaste hrane (kukuruz/zob).
-    """)
-
-    st.markdown("---")
-    
-    st.subheader("💉 Vakcinacija i preventiva")
-    st.write("""
-    Redovna zdravstvena zaštita je ključ za dugovečno i produktivno stado:
-    - **Dehelmintizacija (čišćenje od parazita):** Obavezno se sprovodi 2 puta godišnje (proleće i jesen) uz konsultaciju sa veterinarom radi izbora preparata i karence.
-    - **Vakcinacija protiv klostridioza:** Štiti od anaerobnih infekcija (enterotoksemija) koje često napadaju najnaprednija grla i jariće.
-    - **Nega papaka:** Orezivanje papaka 2 do 3 puta godišnje sprečava hramanje, trulež i infekcije.
-    """)
+    st.success(f"Od **{mleko_litara} L** mleka očekivani prinos sušenog sira je **{sir_min:.2f} kg do {sir_max:.2f} kg**.")
+    st.info(f"💡 To je dovoljno za otprilike **{teglice} do {teglice+1} delikatesne teglice** sira u ulju!")
 
 with tab3:
-    st.header("3. Kalkulator prerade mleka u sir")
-    st.write("Izračunajte očekivanu količinu sira na osnovu ulazne količine mleka:")
-    
-    mleko_litara = st.number_input("Unesite količinu mleka u litrima (L):", min_value=1.0, value=10.0, step=1.0)
-    tip_sira = st.selectbox("Izaberite tip sira:", ["Meki / Sveži sir (~12-15% prinos)", "Polutvrdi / Tvrdi sir (~10-12% prinos)"])
-    
-    if "Meki" in tip_sira:
-        prinos = mleko_litara * 0.14
-    else:
-        prinos = mleko_litara * 0.11
-        
-    st.success(f"Očekivana količina sira: **{prinos:.2f} kg**")
-
-with tab4:
-    st.header("4. Prerada mleka i tradicionalne recepture za sir")
-    st.write("Tri proverene i vrhunske recepture za dodatu vrednost vaših proizvoda:")
-    
-    col_r1, col_r2, col_r3 = st.columns(3)
-    
-    with col_r1:
-        st.subheader("🫒 1. Sir u maslinovom ulju")
-        st.write("""
-        **Sastojci:** Kockice dobro oceđenog i prosušenog čvrstog kozjeg sira, devičansko maslinovo ulje, ruzmarin, majčina dušica, biber u zrnu.
-        
-        **Priprema:**
-        1. Sir prosušiti 24h na rešetki.
-        2. Ređati u sterilisanu teglu sa začinima.
-        3. Potpuno prelijte uljem da nema vazdušnih džepova.
-        4. Odležati minimum 10 dana na hladnom.
-        """)
-        
-    with col_r2:
-        st.subheader("🌿 2. Sir sa bosiljkom i začinskim biljem")
-        st.write("""
-        **Sastojci:** Sveži ili polutvrdi kozji sir, svež ili sušeni bosiljak, beli luk u granulama, maslinovo ulje.
-        
-        **Priprema:**
-        1. Formirane rolice ili kriške sira uvaljati u sitno seckani bosiljak i beli luk.
-        2. Ostaviti u hladnjači/frižideru 12–24h da sir upije aromu bilja.
-        3. Pakovati u vakuum foliju ili preliti laganim uljem za produženu svežinu.
-        """)
-        
-    with col_r3:
-        st.subheader("🪵 3. Sir u pepelu (ili pikantni sa paprikom)")
-        st.write("""
-        **Sastojci:** Meki/sveži kozji sir, prosejani drveni pepeo (od hrasta/bukve) ili slatka/ljuta tucana paprika.
-        
-        **Priprema:**
-        1. Sir nakon ceđenja blagim posipanjem obložiti tankim slojem čistog drvenog pepela (ili tucane paprike).
-        2. Pepeo smanjuje kiselost na površini i podstiče stvaranje fine, kremaste kore.
-        3. Ostaviti na zrenju na 12°C oko 7 do 14 dana.
-        """)
-
-with tab5:
-    st.header("5. Sirenje i detaljno uputstvo za čuvanje sira")
-    
-    # Važno pravilo za mešanje mleka
-    st.warning("""
-    🥛 **ZLATNO PRAVILO HIGIJENE MLEKA: NIKADA NE MEŠAJTE MLEKO RAZLIČITIH TEMPERATURA!**
-    
-    Sveže pomuženo, toplo mleko **nikada se ne sipa direktno** u već ohlađeno mleko iz frižidera. 
-    - *Razlog:* Mešanje toplog i hladnog mleka podiže ukupnu temperaturu, ubrzava množenje bakterija i aktivira enzime koji uzrokuju preuranjeno kiseljenje i neprijatan miris sira.
-    - *Pravilna procedura:* Novo mleko prvo potpuno ohladite na istu temperaturu na kojoj je i prethodno, pa ih tek onda pomešajte.
-    """)
-
-    st.subheader("🧀 Proces sirenja")
-    st.write("""
-    Sirenje je ključna faza u kojoj se mleko pod uticajem sirila i kontrole temperature zgrušava i pretvara u gruš:
-    - Održavajte temperaturu mleka stabilnom (obično između 32°C i 35°C u zavisnosti od recepture).
-    - Nakon dodavanja sirila, ostavite mleko u mirovanju dok se ne formira čvrst gruš čistog loma.
-    - Gruš se seče na kockice odgovarajuće veličine kako bi se izdvojila surutka.
-    """)
-    
-    st.subheader("🧊 Čuvanje i zrenje sira nakon podsoljavanja / salamurenja")
-    st.info("""
-    Mnogi proizvođači prave greške upravo nakon soljenja! Pravilno čuvanje određuje teksturu, ukus i trajnost sira.
-    """)
-    
+    st.header("Receptura: Sir u maslinovom ulju sa biljem")
     st.markdown("""
-    #### 1. Prosušivanje sira (nakon vađenja iz salamure ili suvog soljenja)
-    - **Ocedjivanje:** Sir se mora dobro ocediti od viška tečnosti.
-    - **Formiranje kore:** Ostavite sir na proji/rešetki na temperaturi od **12°C do 15°C** uz blago strujanje vazduha 24–48 sati dok se površina ne osuši i ne formira zaštitna pokožica.
-
-    #### 2. Uslovi zrenja (Podrum / Zrenionica)
-    - **Temperatura:** Optimalna temperatura za zrenje većine kozjih sireva je **10°C – 13°C**.
-    - **Vlažnost vazduha:** Relativna vlažnost mora biti **80% – 85%**. Ako je vazduh presuv, sir puca; ako je previše vlažan, hvata se nepoželjna buđ.
-    - **Okretanje:** Prvih dve nedelje sir se okreće svakodnevno, a kasnije 2-3 puta nedeljno radi ravnomernog sušenja i formiranja strukture.
-
-    #### 3. Skladištenje i dugotrajno čuvanje
-    - **Čuvanje u ulju:** Za produženo trajanje bez gubitka vlage, sir se pakuje u staklene tegle sa maslinovim ili suncokretovim uljem uz dodatak lekovitog bilja.
-    - **Čuvanje u salamuri:** Za meke i polutvrde bele sireve, čuvati u blagoj salamuri (6–8% soli) na temperaturi od **4°C do 8°C** u frižideru ili hladnom podrumu.
+    ### Ključni koraci u pripreme:
+    1. **Prethodno sušenje (Obavezno):** Nakon sečenja sira na kockice, ostavite ih na rešetki u frižideru **24–48h** da se prosuše. Ovo sprečava izdvajanje surutke u ulju.
+    2. **Sterilisanje teglica:** Staklene teglice dobro operite i osušite u rerni na 100°C.
+    
+    ---
+    
+    #### 🌿 Varijanta 1: Mediteranski klasik
+    * **Sastojci:** Kockice sira, sušeni bosiljak, ruzmarin, crni biber u zrnu, hladno ceđeno maslinovo ulje.
+    * **Priprema:** Slagati red sira, red začina, pa sve preliti maslinovim uljem do vrha.
+    
+    #### 🧄 Varijanta 2: Pikantni delikates
+    * **Sastojci:** Kockice sira, sušeni beli luk u listićima, tucana crvena paprika, kombinacija maslinovog i suncokretovog ulja.
+    * **Priprema:** Izmešati začine sa sirom i zaliti uljem.
     """)
+
+# ---------------------------------------------------------
+# SLOGAN NA DNU
+# ---------------------------------------------------------
+st.markdown('<div class="slogan-box">🐐 JEDITE SIR SREĆNIH KOZA 🏡</div>', unsafe_allow_html=True)
