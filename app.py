@@ -7,7 +7,7 @@ st.set_page_config(
     layout="wide"
 )
 
-# CSS stilovi koji garantuju da je tekst uvek tamno siv/crn na svetloj pozadini
+# CSS stil koji force-uje tamnu boju teksta na telefonu i računaru
 st.markdown("""
     <style>
     /* Fiksiranje pozadine cele aplikacije */
@@ -15,7 +15,7 @@ st.markdown("""
         background-color: #f9fbf9;
     }
     
-    /* Fiksiranje boje teksta za sve elemente */
+    /* Fiksiranje boje teksta za sve elemente da se uvek vide */
     html, body, [class*="css"], p, h1, h2, h3, h4, h5, h6, li, span, label {
         color: #1a1a1a !important;
     }
@@ -41,19 +41,19 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ---------------------------------------------------------
-# NASLOV I GLAVNA SLIKA
+# NASLOV I GLAVNE SLIKE
 # ---------------------------------------------------------
 st.title("🐐 Kozarstvo: Vodič za uzgoj, proizvodnju i kalkulator")
 st.write("Dobrodošli na digitalni vodič namenjen malim poljoprivrednim gazdinstvima i početnicima u kozarstvu.")
 
-# Prikaz 3 slike u redu
+# Prikaz 3 lokalne slike u redu
 col1, col2, col3 = st.columns(3)
 with col1:
-    st.image("https://images.unsplash.com/photo-1524024973431-2ad916746881?w=500", caption="Raca i paša")
+    st.image("milka 1.jpg", caption="Koza Milka")
 with col2:
-    st.image("https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?w=500", caption="Domaći kozji sir")
+    st.image("sir 1.jpg", caption="Domaći kozji sir")
 with col3:
-    st.image("https://images.unsplash.com/photo-1559561853-08451507cbe7?w=500", caption="Delikatesni sir sa biljem")
+    st.image("sir u ulju.jpg", caption="Delikatesni sir sa biljem")
 
 st.markdown("---")
 
@@ -67,8 +67,12 @@ with tab1:
     st.markdown("""
     * **Mlečne rase:** Alpina i Sanska koza su najzastupljenije na našem podneblju zbog visoke mlečnosti.
     * **Ishrana:** Osnovu ishrane čine kvalitetna paša, seno i balansirane koncentrovane smeše.
-    * **Higijena:** Čistoća staje i vime-a pre i posle muže je ključna za kvalitet i ukus sira.
+    * **Higijena:** Čistoća staje i vimea pre i posle muže je ključna za kvalitet i ukus sira.
     """)
+    
+    st.warning("⚠️ **VAŽNO UPOZORENJE O ISHRANI:** Izbegavajte davanje svežeg ili plesnivog hleba kozama. Velike količine hleba i skroba mogu izazvati opasnu acidozu ruma i teške digestivne probleme!")
+    
+    st.info("🧊 **ČUVANJE MLEKA:** Sveže pomuženo mleko mora se što pre ohladiti na temperaturu od 4°C kako bi se sprečio razvoj bakterija i očuvao prirodan, blag ukus.")
 
 with tab2:
     st.header("Kalkulator prinosa sira")
@@ -87,19 +91,20 @@ with tab2:
 with tab3:
     st.header("Receptura: Sir u maslinovom ulju sa biljem")
     st.markdown("""
-    ### Ključni koraci u pripreme:
-    1. **Prethodno sušenje (Obavezno):** Nakon sečenja sira na kockice, ostavite ih na rešetki u frižideru **24–48h** da se prosuše. Ovo sprečava izdvajanje surutke u ulju.
-    2. **Sterilisanje teglica:** Staklene teglice dobro operite i osušite u rerni na 100°C.
+    ### Ključni koraci u pripreme (5 koraka):
+    1. **Priprema sira:** Koristiti punomasni kozji sir odceđen od surutke.
+    2. **Sečenje:** Sir iseći na jednake kockice veličine oko 2x2 cm.
+    3. **Prethodno sušenje (Obavezno):** Nakon sečenja na kockice, ostavite ih na rešetki u frižideru **24–48h** da se prosuše. Ovo sprečava izdvajanje surutke i mućenje ulja.
+    4. **Sterilisanje teglica:** Staklene teglice dobro operite i osušite u rerni na 100°C.
+    5. **Pakovanje i prelivanje:** Slagati red sira, red začina, pa sve zaliti uljem tako da sir bude potpuno potopljen.
     
     ---
     
     #### 🌿 Varijanta 1: Mediteranski klasik
     * **Sastojci:** Kockice sira, sušeni bosiljak, ruzmarin, crni biber u zrnu, hladno ceđeno maslinovo ulje.
-    * **Priprema:** Slagati red sira, red začina, pa sve preliti maslinovim uljem do vrha.
     
     #### 🧄 Varijanta 2: Pikantni delikates
     * **Sastojci:** Kockice sira, sušeni beli luk u listićima, tucana crvena paprika, kombinacija maslinovog i suncokretovog ulja.
-    * **Priprema:** Izmešati začine sa sirom i zaliti uljem.
     """)
 
 # ---------------------------------------------------------
