@@ -7,11 +7,19 @@ st.set_page_config(
     layout="wide"
 )
 
-# Custom CSS za ujednačen vizuelni stil
+# Custom CSS za diskretnu zelenu pozadinu, izjednačavanje visine slika sa fokusom na vrh slike
 st.markdown("""
     <style>
     .stApp {
         background-color: #f4f9f4;
+    }
+    
+    /* Pravilo koje sve slike u galeriji primorava na istu visinu i fokusira gornji deo slike (glavu) */
+    [data-testid="stImage"] img {
+        height: 320px !important;
+        object-fit: cover !important;
+        object-position: top !important;
+        border-radius: 10px;
     }
     
     .slogan-box {
@@ -35,7 +43,7 @@ st.markdown("""
 
 st.title("🐐 Kozarstvo: Vodič za uzgoj, proizvodnju i kalkulator")
 
-# Simetrična galerija: 3 kolone jednake veličine
+# Galerija - 3 kolone jednake veličine
 col1, col2, col3 = st.columns(3)
 
 with col1:
@@ -53,12 +61,12 @@ with col2:
 
 with col3:
     st.image(
-        "https://images.unsplash.com/photo-1552767059-ce182ead6c1b?auto=format&fit=crop&w=800&q=80", 
-        caption="Artisanal kozji sir sa začinima", 
+        "https://images.unsplash.com/photo-1559561853-08451507cbe7?auto=format&fit=crop&w=800&q=80", 
+        caption="Zreli kozji sir sa biljem", 
         use_container_width=True
     )
 
-# Slogan ispod tri izbalansirane slike
+# Slogan ispod slika
 st.markdown("""
     <div class="slogan-box">
         <span class="slogan-text">🐐 JEDITE SIR SREĆNIH KOZA 🧀</span>
@@ -88,7 +96,7 @@ with tab1:
 with tab2:
     st.header("2. Ishrana, dnevna nega i zdravstvena zaštita")
     
-    st.subheader("🌾 Ishrana i nega")
+    st.subheader("🌾 Pravilna ishrana")
     st.write("""
     Pravilna ishrana direktno utiče na kvalitet mleka i procenat mlečne masti:
     - **Kabasta hrana:** Kvalitetno seno (lucerka, livadsko seno) čini osnovu obroka.
@@ -96,17 +104,22 @@ with tab2:
     - **Čista voda i mineralni kamen:** Uvek dostupni za pravilno varenje i zdravlje stada.
     """)
     
-    st.warning("""
-    ⚠️ **VAŽNA NAPOMENA PROTIV ACIDOZE:**  
-    **Nikada ne hranite koze hlebom!** Svež ili bajat hleb u većim količinama izaziva brzu fermentaciju i tešku acidozu buraga (prekomernu kiselost želuca), nadutost i potencijalno smrtonosne komplikacije. Za poslastice koristite isključivo šargarepu, jabuke u umerenim količinama ili suvu zrnastu hranu.
-    """)
+    # Upozorenje za hleb
+    st.error("""
+    ⛔ **VAŽNO UPOZORENJE — NIKADA NE HRANITE KOZE HLEBOM!**
     
-    st.subheader("💉 Vakcinacija i zdravstvena zaštita")
+    Svež ili bajat hleb, kao i peciva u većim količinama, izazivaju **opasnu acidozu buraga** (naglo zakiseljavanje želuca), nadutost i zastoj varenja. Ovo stanje može brzo dovesti do uginuća životinje.
+    - *Bezbedne poslastice:* Sveža šargarepa, komadići jabuke ili mala šaka zrnaste hrane (kukuruz/zob).
+    """)
+
+    st.markdown("---")
+    
+    st.subheader("💉 Vakcinacija i preventiva")
     st.write("""
-    Redovna preventiva osigurava dugovečnost stada i bezbednost mlečnih proizvoda:
-    - **Dehelmintizacija (čišćenje od parazita):** Obavezno sprovesti 2 puta godišnje (u proleće pre izlaska na pašu i u jesen po završetku paše).
-    - **Vakcinacija protiv klostridioza:** Ključna zaštita od enterotoksemije ("zarazne žutice/sneti"). Vakcinišu se sve kategorije stada jednom godišnje, a bremenite koze 4–6 nedelja pre jagnjenja radi prenosa imuniteta na jarad.
-    - **Nega papaka:** Redovno orezivanje papaka 2–4 puta godišnje sprečava šepavost i trulež papaka.
+    Redovna zdravstvena zaštita je ključ za dugovečno i produktivno stado:
+    - **Dehelmintizacija (čišćenje od parazita):** Obavezno se sprovodi 2 puta godišnje (proleće i jesen) uz konsultaciju sa veterinarom radi izbora preparata i karence.
+    - **Vakcinacija protiv klostridioza:** Štiti od anaerobnih infekcija (enterotoksemija) koje često napadaju najnaprednija grla i jariće.
+    - **Nega papaka:** Orezivanje papaka 2 do 3 puta godišnje sprečava hramanje, trulež i infekcije.
     """)
 
 with tab3:
@@ -166,21 +179,27 @@ with tab4:
 with tab5:
     st.header("5. Sirenje i detaljno uputstvo za čuvanje sira")
     
-    st.subheader("🧀 Proces sirenja i higijena mleka")
+    # Važno pravilo za mešanje mleka
+    st.warning("""
+    🥛 **ZLATNO PRAVILO HIGIJENE MLEKA: NIKADA NE MEŠAJTE MLEKO RAZLIČITIH TEMPERATURA!**
     
-    st.error("""
-    🥛 **ZLATNO PRAVILO ZA SAKUPLJANJE MLEKA:**  
-    **Nikada ne mešajte mleko različitih temperatura!** Sveže pomuženo (toplo) mleko nikada se ne sipa direktno u prethodno ohlađeno mleko iz frižidera. Mešanje toplog i hladnog mleka izaziva takozvani "toplotni šok", podstiče brzi razvoj nepoželjnih bakterija i aktivira lipase (enzime koji razgrađuju mast), što dovodi do kiseljenja mleka i pojave užeglog, neprijatnog mirisa sira. Sveže mleko prvo ohladite na istu temperaturu pa ga tek onda pomešajte sa ranijim mužama.
+    Sveže pomuženo, toplo mleko **nikada se ne sipa direktno** u već ohlađeno mleko iz frižidera. 
+    - *Razlog:* Mešanje toplog i hladnog mleka podiže ukupnu temperaturu, ubrzava množenje bakterija i aktivira enzime koji uzrokuju preuranjeno kiseljenje i neprijatan miris sira.
+    - *Pravilna procedura:* Novo mleko prvo potpuno ohladite na istu temperaturu na kojoj je i prethodno, pa ih tek onda pomešajte.
     """)
-    
+
+    st.subheader("🧀 Proces sirenja")
     st.write("""
-    **Tehnološke faze sirenja:**
+    Sirenje je ključna faza u kojoj se mleko pod uticajem sirila i kontrole temperature zgrušava i pretvara u gruš:
     - Održavajte temperaturu mleka stabilnom (obično između 32°C i 35°C u zavisnosti od recepture).
     - Nakon dodavanja sirila, ostavite mleko u mirovanju dok se ne formira čvrst gruš čistog loma.
     - Gruš se seče na kockice odgovarajuće veličine kako bi se izdvojila surutka.
     """)
     
     st.subheader("🧊 Čuvanje i zrenje sira nakon podsoljavanja / salamurenja")
+    st.info("""
+    Mnogi proizvođači prave greške upravo nakon soljenja! Pravilno čuvanje određuje teksturu, ukus i trajnost sira.
+    """)
     
     st.markdown("""
     #### 1. Prosušivanje sira (nakon vađenja iz salamure ili suvog soljenja)
