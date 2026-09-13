@@ -41,19 +41,18 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ---------------------------------------------------------
-# NASLOV I GLAVNE SLIKE
+# NASLOV I GLAVNE SLIKE (Tvoje originalne slike)
 # ---------------------------------------------------------
 st.title("🐐 Kozarstvo: Vodič za uzgoj, proizvodnju i kalkulator")
 st.write("Dobrodošli na digitalni vodič namenjen malim poljoprivrednim gazdinstvima i početnicima u kozarstvu.")
 
-# Prikaz 3 slike u redu (stabilni URL linkovi)
 col1, col2, col3 = st.columns(3)
 with col1:
-    st.image("https://images.unsplash.com/photo-1524024973431-2ad916746881?w=500", caption="Koza na paši")
+    st.image("milka 1.jpg", caption="Koza Milka")
 with col2:
-    st.image("https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?w=500", caption="Domaći kozji sir")
+    st.image("sir 1.jpg", caption="Domaći kozji sir")
 with col3:
-    st.image("https://images.unsplash.com/photo-1559561853-08451507cbe7?w=500", caption="Delikatesni sir sa biljem")
+    st.image("sir u ulju.jpg", caption="Delikatesni sir sa biljem")
 
 st.markdown("---")
 
@@ -91,10 +90,10 @@ with tab2:
 with tab3:
     st.header("Receptura: Sir u maslinovom ulju sa biljem")
     st.markdown("""
-    ### Ključni koraci u pripreme (5 koraka):
+    ### Ključni koraci u pripreme:
     1. **Priprema sira:** Koristiti punomasni kozji sir odceđen od surutke.
     2. **Sečenje:** Sir iseći na jednake kockice veličine oko 2x2 cm.
-    3. **Prethodno sušenje (Obavezno):** Nakon sečenja na kockice, ostavite ih na rešetki u frižideru **24–48h** da se prosuše. Ovo sprečava izdvajanje surutke i mućenje ulja.
+    3. **Prethodno sušenje (Obavezno):** Nakon sečenja na kockice, ostavite ih na rešetki u frižideru **24–48h** da se prosuše. Ovo sprečava izdvajanje surutke u ulju.
     4. **Sterilisanje teglica:** Staklene teglice dobro operite i osušite u rerni na 100°C.
     5. **Pakovanje i prelivanje:** Slagati red sira, red začina, pa sve zaliti uljem tako da sir bude potpuno potopljen.
     
@@ -102,9 +101,11 @@ with tab3:
     
     #### 🌿 Varijanta 1: Mediteranski klasik
     * **Sastojci:** Kockice sira, sušeni bosiljak, ruzmarin, crni biber u zrnu, hladno ceđeno maslinovo ulje.
+    * **Priprema:** Slagati red sira, red začina, pa sve preliti maslinovim uljem do vrha.
     
     #### 🧄 Varijanta 2: Pikantni delikates
     * **Sastojci:** Kockice sira, sušeni beli luk u listićima, tucana crvena paprika, kombinacija maslinovog i suncokretovog ulja.
+    * **Priprema:** Izmešati začine sa sirom i zaliti uljem.
     """)
 
 # ---------------------------------------------------------
