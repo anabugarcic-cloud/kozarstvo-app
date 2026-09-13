@@ -7,19 +7,11 @@ st.set_page_config(
     layout="wide"
 )
 
-# Custom CSS za diskretnu zelenu pozadinu, izjednačavanje visine slika sa fokusom na vrh slike
+# Custom CSS za diskretnu zelenu pozadinu i skladan slogan
 st.markdown("""
     <style>
     .stApp {
         background-color: #f4f9f4;
-    }
-    
-    /* Pravilo koje sve slike u galeriji primorava na istu visinu i fokusira gornji deo slike (glavu) */
-    [data-testid="stImage"] img {
-        height: 320px !important;
-        object-fit: cover !important;
-        object-position: top !important;
-        border-radius: 10px;
     }
     
     .slogan-box {
@@ -43,14 +35,14 @@ st.markdown("""
 
 st.title("🐐 Kozarstvo: Vodič za uzgoj, proizvodnju i kalkulator")
 
-# Galerija - 3 kolone jednake veličine
+# Galerija - 3 horizontalne slike jednake razmere
 col1, col2, col3 = st.columns(3)
 
 with col1:
     try:
-        st.image("koza.jpg", caption="Naša koza", use_container_width=True)
+        st.image("milka 1.jpg", caption="Koza Milka", use_container_width=True)
     except Exception:
-        st.info("Slika koza.jpg")
+        st.info("Slika milka 1.jpg")
 
 with col2:
     st.image(
@@ -101,7 +93,7 @@ with tab2:
     Pravilna ishrana direktno utiče na kvalitet mleka i procenat mlečne masti:
     - **Kabasta hrana:** Kvalitetno seno (lucerka, livadsko seno) čini osnovu obroka.
     - **Koncentrovana hrana:** Kukuruz, ječam, zob i mekinje za visoku mlečnost.
-    - **Čista voda i mineralni kamen:** Uvek dostupni za pravilno varenje i zdravlje stada.
+    - **Čista voda i mineralni kamen:** Uvek dostupni za pravilno varenje i zdravlje stado.
     """)
     
     # Upozorenje za hleb
