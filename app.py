@@ -7,7 +7,7 @@ st.set_page_config(
     layout="wide"
 )
 
-# CSS stil koji force-uje tamnu boju teksta na telefonu i računaru
+# CSS stil koji fiksira tamnu boju teksta na telefonu i u Dark Mode-u
 st.markdown("""
     <style>
     /* Fiksiranje pozadine cele aplikacije */
@@ -41,7 +41,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ---------------------------------------------------------
-# NASLOV I GLAVNE SLIKE (Tvoje originalne slike)
+# NASLOV I GLAVNE SLIKE (Tvoje originalne 3 slike)
 # ---------------------------------------------------------
 st.title("🐐 Kozarstvo: Vodič za uzgoj, proizvodnju i kalkulator")
 st.write("Dobrodošli na digitalni vodič namenjen malim poljoprivrednim gazdinstvima i početnicima u kozarstvu.")
@@ -69,6 +69,12 @@ with tab1:
     * **Higijena:** Čistoća staje i vimea pre i posle muže je ključna za kvalitet i ukus sira.
     """)
     
+    st.subheader("🩺 Zdravstvena zaštita i vakcinacija")
+    st.markdown("""
+    * **Vakcinacija:** Redovna preventiva obuhvata vakcinaciju protiv klostridijalnih infekcija (enterotoksemija) i zaraznog šepavca u dogovoru sa nadležnim veterinarom.
+    * **Čišćenje od parazita:** Obavezna dehelmintizacija (čišćenje od unutrašnjih parazita) sprovodi se u proleće pre izlaska na pašu i u jesen po završetku pašne sezone.
+    """)
+    
     st.warning("⚠️ **VAŽNO UPOZORENJE O ISHRANI:** Izbegavajte davanje svežeg ili plesnivog hleba kozama. Velike količine hleba i skroba mogu izazvati opasnu acidozu ruma i teške digestivne probleme!")
     
     st.info("🧊 **ČUVANJE MLEKA:** Sveže pomuženo mleko mora se što pre ohladiti na temperaturu od 4°C kako bi se sprečio razvoj bakterija i očuvao prirodan, blag ukus.")
@@ -90,7 +96,7 @@ with tab2:
 with tab3:
     st.header("Receptura: Sir u maslinovom ulju sa biljem")
     st.markdown("""
-    ### Ključni koraci u pripreme:
+    ### Ključni koraci u pripreme (5 koraka):
     1. **Priprema sira:** Koristiti punomasni kozji sir odceđen od surutke.
     2. **Sečenje:** Sir iseći na jednake kockice veličine oko 2x2 cm.
     3. **Prethodno sušenje (Obavezno):** Nakon sečenja na kockice, ostavite ih na rešetki u frižideru **24–48h** da se prosuše. Ovo sprečava izdvajanje surutke u ulju.
