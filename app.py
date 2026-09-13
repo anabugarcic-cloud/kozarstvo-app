@@ -1,6 +1,6 @@
 import streamlit as st
 
-# 1. Postavljanje fiksnih boja za Light/Dark mode (Fiksira beli tekst na svetloj pozadini)
+# 1. Postavljanje fiksnih boja za Light/Dark mode
 st.set_page_config(
     page_title="Kozarstvo: Vodič i Kalkulator",
     page_icon="🐐",
@@ -46,14 +46,14 @@ st.markdown("""
 st.title("🐐 Kozarstvo: Vodič za uzgoj, proizvodnju i kalkulator")
 st.write("Dobrodošli na digitalni vodič namenjen malim poljoprivrednim gazdinstvima i početnicima u kozarstvu.")
 
-# Prikaz 3 lokalne slike u redu
+# Prikaz 3 slike u redu (stabilni URL linkovi)
 col1, col2, col3 = st.columns(3)
 with col1:
-    st.image("milka 1.jpg", caption="Koza Milka")
+    st.image("https://images.unsplash.com/photo-1524024973431-2ad916746881?w=500", caption="Koza na paši")
 with col2:
-    st.image("sir 1.jpg", caption="Domaći kozji sir")
+    st.image("https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?w=500", caption="Domaći kozji sir")
 with col3:
-    st.image("sir u ulju.jpg", caption="Delikatesni sir sa biljem")
+    st.image("https://images.unsplash.com/photo-1559561853-08451507cbe7?w=500", caption="Delikatesni sir sa biljem")
 
 st.markdown("---")
 
